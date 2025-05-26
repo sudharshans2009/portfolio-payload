@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 2rem;
+        background-color: #f9f9f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #6200ea;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 2rem;
+      }
+
+      .offline-icon {
+        font-size: 5rem;
+        color: #6200ea;
+        margin-bottom: 1rem;
+      }
+
+      .retry-button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #6200ea;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .retry-button:hover {
+        background-color: #4500b5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="offline-icon">📴</div>
+    <h1>You are offline</h1>
+    <p>
+      It seems you have lost your internet connection. Please reconnect to
+      access the full site.
+    </p>
+    <a href="/" class="retry-button">Retry</a>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/sw.js"></script>
+  </body>
+</html>

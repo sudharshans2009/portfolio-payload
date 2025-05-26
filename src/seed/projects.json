@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "title": "EcoTrack Dashboard",
+    "description": "A real-time analytics dashboard for environmental monitoring, built with Next.js and WebSocket for live data visualization.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "demoUrl": "#",
+    "githubUrl": "#",
+    "tags": [
+      {
+        "id": "682c2fba57c3e42195eeeb39",
+        "tag": "Next JS"
+      },
+      {
+        "id": "682c2fc057c3e42195eeeb3b",
+        "tag": "Typescript"
+      },
+      {
+        "id": "682c2fc757c3e42195eeeb3d",
+        "tag": "TailwindCSS"
+      },
+      {
+        "id": "682c2fcd57c3e42195eeeb3f",
+        "tag": "WebSocket"
+      }
+    ],
+    "updatedAt": "2025-05-20T07:31:32.155Z",
+    "createdAt": "2025-05-20T07:31:32.153Z"
+  },
+  {
+    "id": 2,
+    "title": "CryptoFlow",
+    "description": "Cryptocurrency trading platform with advanced charting capabilities and real-time market data integration.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "demoUrl": "#",
+    "githubUrl": "#",
+    "tags": [
+      {
+        "id": "682c2fdb8d17124f0ca43019",
+        "tag": "React"
+      },
+      {
+        "id": "682c2fdb8d17124f0ca4301a",
+        "tag": "Node JS"
+      },
+      {
+        "id": "682c2fdb8d17124f0ca4301b",
+        "tag": "Express"
+      },
+      {
+        "id": "682c2fdb8d17124f0ca4301c",
+        "tag": "WebSocket"
+      }
+    ],
+    "updatedAt": "2025-05-20T07:32:10.953Z",
+    "createdAt": "2025-05-20T07:31:39.495Z"
+  },
+  {
+    "id": 3,
+    "title": "AI Content Studio",
+    "description": "Content generation platform powered by AI, helping creators produce high-quality content efficiently.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "demoUrl": "#",
+    "githubUrl": "#",
+    "tags": [
+      {
+        "id": "682c2ffe8d17124f0ca4301d",
+        "tag": "Next JS"
+      },
+      {
+        "id": "682c2ffe8d17124f0ca4301e",
+        "tag": "OpenAI"
+      },
+      {
+        "id": "682c2ffe8d17124f0ca4301f",
+        "tag": "PostgreSQL"
+      },
+      {
+        "id": "682c2ffe8d17124f0ca43020",
+        "tag": "AWS"
+      }
+    ],
+    "updatedAt": "2025-05-20T07:32:49.316Z",
+    "createdAt": "2025-05-20T07:32:14.102Z"
+  }
+]

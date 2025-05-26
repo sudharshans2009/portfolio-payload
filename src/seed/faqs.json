@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "question": "What is web development and how do I get into it?",
+    "answer": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Web development involves building and maintaining websites. To get into it, learn HTML, CSS, and JavaScript. Explore frameworks like React and Next.js, and practice by building projects.",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "updatedAt": "2025-05-20T07:22:09.149Z",
+    "createdAt": "2025-05-20T07:22:09.149Z"
+  },
+  {
+    "id": 2,
+    "question": "How do I improve my web development skillset and become a better developer?",
+    "answer": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Continuously practice by building projects, contribute to open-source, and stay updated with the latest trends and technologies. Take online courses and participate in developer communities.",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "updatedAt": "2025-05-20T07:22:31.084Z",
+    "createdAt": "2025-05-20T07:22:15.656Z"
+  },
+  {
+    "id": 3,
+    "question": "What services do you offer and how much do they cost?",
+    "answer": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "I offer services like web development, API development, database management, and DevOps. Pricing depends on the project scope and requirements. Contact me for a detailed quote.",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "updatedAt": "2025-05-20T07:23:29.093Z",
+    "createdAt": "2025-05-20T07:22:34.604Z"
+  },
+  {
+    "id": 4,
+    "question": "What hosting options are provided by me?",
+    "answer": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "I provide hosting options through platforms like Vercel, Netlify, and AWS. These platforms offer scalable and reliable hosting solutions for your projects.",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "updatedAt": "2025-05-20T07:23:59.196Z",
+    "createdAt": "2025-05-20T07:23:31.219Z"
+  },
+  {
+    "id": 5,
+    "question": "I have more questions.",
+    "answer": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Send your questions to ",
+                "type": "text",
+                "version": 1
+              },
+              {
+                "type": "autolink",
+                "children": [
+                  {
+                    "detail": 0,
+                    "format": 0,
+                    "mode": "normal",
+                    "style": "",
+                    "text": "contact@sudharshans2009.live",
+                    "type": "text",
+                    "version": 1
+                  }
+                ],
+                "direction": "ltr",
+                "fields": {
+                  "linkType": "custom",
+                  "url": "mailto:contact@sudharshans2009.live"
+                },
+                "format": "",
+                "indent": 0,
+                "version": 2
+              },
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": ", and I'll try to answer them",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "updatedAt": "2025-05-20T07:24:59.914Z",
+    "createdAt": "2025-05-20T07:24:02.032Z"
+  }
+]

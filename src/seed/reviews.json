@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Brian Smith",
+    "position": "Web Solutions",
+    "review": "Professional, reliable, and highly skilled. Highly recommended for any web development needs.",
+    "image": {
+      "id": 1,
+      "alt": "Madlad Logo",
+      "updatedAt": "2025-05-20T07:20:02.750Z",
+      "createdAt": "2025-05-20T07:20:02.752Z",
+      "url": "/api/media/file/madlad-logo.png",
+      "thumbnailURL": null,
+      "filename": "madlad-logo.png",
+      "mimeType": "image/png",
+      "filesize": 181798,
+      "width": 1024,
+      "height": 1024,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "rating": 5,
+    "updatedAt": "2025-05-20T07:26:14.903Z",
+    "createdAt": "2025-05-20T07:26:14.904Z"
+  },
+  {
+    "id": 2,
+    "name": "Catherine Lee",
+    "position": "Startup Hub",
+    "review": "Great communication and technical expertise. The end product was exactly what we needed.",
+    "image": {
+      "id": 2,
+      "alt": "Madlad Logo Old",
+      "updatedAt": "2025-05-20T07:20:25.219Z",
+      "createdAt": "2025-05-20T07:20:25.215Z",
+      "url": "/api/media/file/madlad-logo-old.png",
+      "thumbnailURL": null,
+      "filename": "madlad-logo-old.png",
+      "mimeType": "image/png",
+      "filesize": 41562,
+      "width": 1024,
+      "height": 1024,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "rating": 5,
+    "updatedAt": "2025-05-20T07:26:56.195Z",
+    "createdAt": "2025-05-20T07:26:17.232Z"
+  },
+  {
+    "id": 3,
+    "name": "David Kim",
+    "position": "FinTech Labs",
+    "review": "Delivered complex features with ease and provided valuable insights throughout the process.",
+    "image": {
+      "id": 3,
+      "alt": "Madlad Profile",
+      "updatedAt": "2025-05-20T07:20:25.268Z",
+      "createdAt": "2025-05-20T07:20:25.268Z",
+      "url": "/api/media/file/madlad-pfp.png",
+      "thumbnailURL": null,
+      "filename": "madlad-pfp.png",
+      "mimeType": "image/png",
+      "filesize": 100077,
+      "width": 512,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "rating": 5,
+    "updatedAt": "2025-05-20T07:27:38.642Z",
+    "createdAt": "2025-05-20T07:26:58.270Z"
+  }
+]
