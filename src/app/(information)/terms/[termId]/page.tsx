@@ -3,14 +3,10 @@ import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import React from "react";
 
-export default async function TermsPage(
-  page: Promise<{
-    params: { termId: string };
-  }>,
-) {
-  const {
-    params: { termId },
-  } = await page;
+export default async function TermsPage({
+  params,
+}: { params: Promise<{ termId: string }> }) {
+  const { termId } = await params;
   const config = await payloadConfig;
   const payload = await getPayload({ config });
   const term = await payload.find({
