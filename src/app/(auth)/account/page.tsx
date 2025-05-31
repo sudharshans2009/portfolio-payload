@@ -1,6 +1,6 @@
 import { headers as getHeaders } from "next/headers.js";
 import { redirect } from "next/navigation";
-import { getPayload } from "payload";
+import { getPayload, Permissions } from "payload";
 import React, { Fragment } from "react";
 
 import config from "../../../payload.config";
@@ -24,7 +24,7 @@ export default async function Account() {
 
   return (
     <Fragment>
-      <HydrateClientUser permissions={permissions} user={user} />
+      <HydrateClientUser permissions={permissions as Permissions} user={user} />
       <Gutter className={classes.account}>
         <RenderParams className={classes.params} />
         <h1>Account</h1>

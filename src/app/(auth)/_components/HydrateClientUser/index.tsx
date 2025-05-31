@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useAuth } from "../../_providers/Auth";
 
 export const HydrateClientUser: React.FC<{
-  permissions: Permissions;
+  permissions:  Permissions;
   user: PayloadRequest["user"];
 }> = ({ permissions, user }) => {
   const { setPermissions, setUser } = useAuth();
