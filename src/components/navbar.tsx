@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { siteNavLinks, socialLinks } from "@/constants";
-import { ChevronsUpDown, Moon, Sun, UserRoundCog } from "lucide-react";
+import { ChevronsUpDown, Moon, SearchX, Sun, UserRoundCog } from "lucide-react";
 import { useNavbar } from "@/hooks/use-navbar";
 import Motion from "./motion";
 import { usePathname } from "next/navigation";
@@ -246,15 +246,26 @@ export default function Navbar({
                     {(nav.get === "site"
                       ? siteNavLinks
                       : (siteNavLinks.find((link) => link.href === pathname)
-                          ?.pageNavLinks ?? [])
-                    ).map((link, index) => (
+                        ?.pageNavLinks ?? [])
+                    ).length > 0 ? (
+                      (nav.get === "site"
+                      ? siteNavLinks
+                      : (siteNavLinks.find((link) => link.href === pathname)
+                        ?.pageNavLinks ?? [])
+                      ).map((link, index) => (
                       <NavItem
                         key={link.name}
                         menu={menu}
                         link={link}
                         index={index}
                       />
-                    ))}
+                      ))
+                    ) : (
+                      <p className="flex flex-col justify-center items-center rounded-2xl gap-4 p-8 border-gray-200/50 dark:border-gray-700/50 shadow-xl dark:shadow-gray-900/10 hover:border-purple-500/50 dark:hover:border-purple-500/50 text-gray-500 border dark:text-gray-400 transition-all duration-300">
+                        <SearchX className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                        No page links found
+                      </p>
+                    )}
                   </div>
                 </nav>
                 <div className="flex flex-col gap-6 p-6 border-t border-purple-500/10 dark:border-purple-500/5">
