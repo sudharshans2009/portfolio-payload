@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 import UnreadReplys from "@/components/unread-replys";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
+import QueryProvider from "@/components/providers/query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.live",
+  "SS.live"
 );
 
 export const viewport: Viewport = {
@@ -50,12 +51,14 @@ export default async function RootLayout({
         className={cn("antialiased", geistSans.className)}
         suppressHydrationWarning
       >
-        <ThemeProvider>
-          <Navbar user={user} />
-          {children}
-          <Footer />
-          <UnreadReplys user={user} />
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider>
+            <Navbar user={user} />
+            {children}
+            <Footer />
+            <UnreadReplys user={user} />
+          </ThemeProvider>
+        </QueryProvider>
         <Toaster position="bottom-right" richColors />
         {typeof window !== "undefined" && (
           <>
