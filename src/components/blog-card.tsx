@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Motion from "./motion";
-import { ExternalLink, Github } from "lucide-react";
+import { Book } from "lucide-react";
 import { formatImage } from "@/lib/utils";
 import { Blog } from "@/payload-types";
 
@@ -55,21 +55,11 @@ export default function ProjectCard({
             element="a"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href={project.demoUrl || "#"}
+            href={`/${blog.slug}` || "#"}
             className="px-6 py-2.5 bg-purple-600 dark:bg-purple-500 text-white rounded-lg flex items-center gap-2 hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors shadow-lg shadow-purple-500/20"
           >
-            Live Demo
-            <ExternalLink className="w-4 h-4" />
-          </Motion>
-          <Motion
-            element="a"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            href={project.githubUrl || "#"}
-            className="px-6 py-2.5 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-lg flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors shadow-lg shadow-gray-200/20 dark:shadow-gray-900/20 border border-gray-200 dark:border-gray-700"
-          >
-            <Github className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-            View Code
+            Read Now
+            <Book className="w-4 h-4" />
           </Motion>
         </div>
       </div>
