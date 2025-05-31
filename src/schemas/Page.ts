@@ -1,5 +1,4 @@
 import type { CollectionConfig } from "payload";
-import * as Lucide from "lucide-react";
 import { admins } from "./access/admins";
 import { anyone } from "./access/anyone";
 import { checkRole } from "./access/check-role";

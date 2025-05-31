@@ -185,7 +185,7 @@ export default async function ContactPage() {
                 ideas and opportunities.
               </Motion>
             </div>
-            <InitialMessages ip={ip} user={user} />
+            <InitialMessages user={user} />
           </div>
         </section>
         <section
@@ -218,7 +218,7 @@ export default async function ContactPage() {
                 feedback, feel free to reach out.
               </Motion>
             </div>
-            <ReplyMessages ip={ip} user={user} />
+            <ReplyMessages user={user} />
           </div>
         </section>
       </div>

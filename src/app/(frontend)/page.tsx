@@ -13,7 +13,6 @@ import { generateMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 import { UnreadReplysBadge } from "@/components/unread-replys";
 import { headers } from "next/headers";
-import * as Lucide from "lucide-react";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
@@ -29,8 +28,6 @@ export default async function HomePage() {
     limit: 6,
   });
   const request = await headers();
-  const ip =
-    request.get("x-forwarded-for") || request.get("x-real-ip") || "Unknown IP";
   const { user } = await payload.auth({ headers: request });
 
   return (
@@ -102,7 +99,7 @@ export default async function HomePage() {
                         Contact Me
                         <Phone className="w-4 h-4" />
                       </span>
-                      <UnreadReplysBadge ip={ip} user={user} />
+                      <UnreadReplysBadge user={user} />
                     </Motion>
                   </NextLink>
                 </div>

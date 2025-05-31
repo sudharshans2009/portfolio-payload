@@ -12,7 +12,6 @@ import {
   Package,
   Star,
   UserRound,
-  UserRoundCog,
   Wrench,
   Lock,
   Cookie,

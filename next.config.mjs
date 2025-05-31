@@ -15,14 +15,14 @@ const { experimental: _experimental, ...nextConfig } = withPayload(
           protocol: "https",
           hostname: "www.sudharshans.me",
           pathname: "/**",
-        }
+        },
       ],
     },
     turbopack: {
       resolveExtensions: [".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
     },
   },
-  { devBundleServerPackages: false }
+  { devBundleServerPackages: false },
 );
 
 export default nextConfig;

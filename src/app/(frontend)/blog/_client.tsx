@@ -14,7 +14,7 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
     return _page;
   });
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredBlog, setFilteredBlog] = useState(blogMeta);
+  const [_filteredBlog, setFilteredBlog] = useState(blogMeta);
 
   useEffect(() => {
     setFilteredBlog(

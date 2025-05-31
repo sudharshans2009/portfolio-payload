@@ -9,10 +9,8 @@ import { PaginatedDocs, User } from "payload";
 import { stringify } from "qs-esm";
 
 export default function UnreadReplys({
-  ip,
   user,
 }: {
-  ip: string;
   user:
     | (User & {
         collection: "users";
@@ -53,10 +51,8 @@ export default function UnreadReplys({
 }
 
 export function UnreadReplysBadge({
-  ip,
   user,
 }: {
-  ip: string;
   user:
     | (User & {
         collection: "users";

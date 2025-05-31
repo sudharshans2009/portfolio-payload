@@ -33,7 +33,6 @@ import Link from "next/link";
 import { PaginatedDocs, User } from "payload";
 import { Message } from "@/payload-types";
 import { stringify } from "qs-esm";
-import { email } from "node_modules/payload/dist/fields/validations";
 
 interface Props {
   children?: React.ReactNode;
@@ -150,7 +149,7 @@ export function ContactForm({
 
       mutate(values);
     },
-    [mutate],
+    [mutate, user?.email],
   );
 
   return (
@@ -258,10 +257,8 @@ export function ContactForm({
 }
 
 export function InitialMessages({
-  ip,
   user,
 }: {
-  ip: string;
   user:
     | (User & {
         collection: "users";
@@ -337,10 +334,8 @@ export function InitialMessages({
 }
 
 export function ReplyMessages({
-  ip,
   user,
 }: {
-  ip: string;
   user:
     | (User & {
         collection: "users";

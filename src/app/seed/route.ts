@@ -18,15 +18,15 @@ export async function GET() {
       limit: 1,
     });
     // Check and seed media
-    // if (existingMedia.totalDocs === 0) {
-    //   console.log("Seeding media...");
-    //   for (const m of media) {
-    //     await payload.create({
-    //       collection: "media",
-    //       data: m as any,
-    //     });
-    //   }
-    // }
+    if (existingMedia.totalDocs === 0) {
+      console.log("Seeding media...");
+      for (const m of media) {
+        await payload.create({
+          collection: "media",
+          data: m as any,
+        });
+      }
+    }
 
     // Check and seed projects
     const existingProjects = await payload.find({
@@ -69,15 +69,15 @@ export async function GET() {
       limit: 1,
     });
     // Check and seed blog posts
-    // if (existingBlog.totalDocs === 0) {
-    //   console.log("Seeding blog posts...");
-    //   for (const post of blog) {
-    //     await payload.create({
-    //       collection: "blog",
-    //       data: post as any,
-    //     });
-    //   }
-    // }
+    if (existingBlog.totalDocs === 0) {
+      console.log("Seeding blog posts...");
+      for (const post of blog) {
+        await payload.create({
+          collection: "blog",
+          data: post as any,
+        });
+      }
+    }
     // Check and seed page
     const existingPage = await payload.find({
       collection: "page",

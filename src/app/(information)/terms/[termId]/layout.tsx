@@ -40,8 +40,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const request = await headers();
-  const ip =
-    request.get("x-forwarded-for") || request.get("x-real-ip") || "Unknown IP";
   const config = await payloadConfig;
   const payload = await getPayload({ config });
   const { user } = await payload.auth({ headers: request });
@@ -56,7 +54,7 @@ export default async function RootLayout({
           <Navbar user={user} />
           {children}
           <Footer />
-          <UnreadReplys ip={ip} user={user} />
+          <UnreadReplys user={user} />
         </ThemeProvider>
         <Toaster position="bottom-right" richColors />
         {typeof window !== "undefined" && (

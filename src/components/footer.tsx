@@ -1,6 +1,6 @@
 "use client";
 
-import { infoLinks, siteNavLinks, socialLinks } from "@/constants";
+import { siteNavLinks, socialLinks } from "@/constants";
 import { MapPin, Mail } from "lucide-react";
 import * as Lucide from "lucide-react";
 import Link from "next/link";

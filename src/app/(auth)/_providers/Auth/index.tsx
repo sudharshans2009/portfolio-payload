@@ -200,6 +200,6 @@ export const AuthProvider: React.FC<{
   );
 };
 
-type UseAuth<T = User> = () => AuthContext;
+type UseAuth = () => AuthContext;
 
 export const useAuth: UseAuth = () => use(Context);
