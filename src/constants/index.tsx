@@ -32,12 +32,12 @@ export const siteNavLinks = [
     ],
   },
   {
-    name: "Services",
-    href: "/services",
-    icon: UserRoundCog,
+    name: "Projects",
+    href: "/projects",
+    icon: Package,
     pageNavLinks: [
       { name: "Home", href: "#home", icon: Home },
-      { name: "Services", href: "#services", icon: UserRoundCog },
+      { name: "Projects", href: "#projects", icon: Package },
       { name: "Reviews", href: "#reviews", icon: Star },
       { name: "FAQs", href: "#faqs", icon: HelpCircle },
     ],

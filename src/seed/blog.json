@@ -1,0 +1,269 @@
+[
+  {
+    "id": 3,
+    "title": "Dollar and Sense: The Financial Forecast",
+    "slug": "dollar-and-sense-the-financial-forecast",
+    "description": "Money isn't just currency; it's a language. Dive deep into its nuances, where strategy meets intuition in the vast sea of finance.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "content": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Test",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "authors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S",
+        "profilePicture": {
+          "id": 1,
+          "alt": "Madlad Logo",
+          "updatedAt": "2025-05-20T07:20:02.750Z",
+          "createdAt": "2025-05-20T07:20:02.752Z",
+          "url": "/api/media/file/madlad-logo.png",
+          "thumbnailURL": null,
+          "filename": "madlad-logo.png",
+          "mimeType": "image/png",
+          "filesize": 181798,
+          "width": 1024,
+          "height": 1024,
+          "focalX": 50,
+          "focalY": 50
+        },
+        "updatedAt": "2025-05-23T05:03:59.051Z",
+        "createdAt": "2025-05-23T04:33:08.488Z",
+        "email": "sudharshans2009@gmail.com",
+        "loginAttempts": 0
+      }
+    ],
+    "populatedAuthors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S"
+      }
+    ],
+    "publishedDate": "2025-05-23T11:30:00.000Z",
+    "status": "published",
+    "tags": [],
+    "categories": [],
+    "updatedAt": "2025-05-23T04:52:03.668Z",
+    "createdAt": "2025-05-23T04:39:22.065Z"
+  },
+  {
+    "id": 2,
+    "title": "Global Gaze: Beyond the Headlines",
+    "slug": "global-gaze-beyond-the-headlines",
+    "description": "Explore the untold and overlooked. A magnified view into the corners of the world, where every story deserves its spotlight.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "content": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Test",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "authors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S",
+        "profilePicture": {
+          "id": 1,
+          "alt": "Madlad Logo",
+          "updatedAt": "2025-05-20T07:20:02.750Z",
+          "createdAt": "2025-05-20T07:20:02.752Z",
+          "url": "/api/media/file/madlad-logo.png",
+          "thumbnailURL": null,
+          "filename": "madlad-logo.png",
+          "mimeType": "image/png",
+          "filesize": 181798,
+          "width": 1024,
+          "height": 1024,
+          "focalX": 50,
+          "focalY": 50
+        },
+        "updatedAt": "2025-05-23T05:03:59.051Z",
+        "createdAt": "2025-05-23T04:33:08.488Z",
+        "email": "sudharshans2009@gmail.com",
+        "loginAttempts": 0
+      }
+    ],
+    "populatedAuthors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S"
+      }
+    ],
+    "publishedDate": "2025-05-23T11:30:00.000Z",
+    "status": "published",
+    "tags": [],
+    "categories": [],
+    "updatedAt": "2025-05-23T04:51:54.894Z",
+    "createdAt": "2025-05-23T04:38:45.689Z"
+  },
+  {
+    "id": 1,
+    "title": "Digital Horizons: A Glimpse into Tomorrow",
+    "slug": "digital-horizons-a-glimpse-into-tomorrow",
+    "description": "Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.",
+    "image": {
+      "id": 5,
+      "alt": "Project",
+      "updatedAt": "2025-05-20T07:20:25.358Z",
+      "createdAt": "2025-05-20T07:20:25.359Z",
+      "url": "/api/media/file/project.jpg",
+      "thumbnailURL": null,
+      "filename": "project.jpg",
+      "mimeType": "image/jpeg",
+      "filesize": 79806,
+      "width": 922,
+      "height": 512,
+      "focalX": 50,
+      "focalY": 50
+    },
+    "content": {
+      "root": {
+        "children": [
+          {
+            "children": [
+              {
+                "detail": 0,
+                "format": 0,
+                "mode": "normal",
+                "style": "",
+                "text": "Test",
+                "type": "text",
+                "version": 1
+              }
+            ],
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "paragraph",
+            "version": 1,
+            "textFormat": 0,
+            "textStyle": ""
+          }
+        ],
+        "direction": "ltr",
+        "format": "",
+        "indent": 0,
+        "type": "root",
+        "version": 1
+      }
+    },
+    "authors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S",
+        "profilePicture": {
+          "id": 1,
+          "alt": "Madlad Logo",
+          "updatedAt": "2025-05-20T07:20:02.750Z",
+          "createdAt": "2025-05-20T07:20:02.752Z",
+          "url": "/api/media/file/madlad-logo.png",
+          "thumbnailURL": null,
+          "filename": "madlad-logo.png",
+          "mimeType": "image/png",
+          "filesize": 181798,
+          "width": 1024,
+          "height": 1024,
+          "focalX": 50,
+          "focalY": 50
+        },
+        "updatedAt": "2025-05-23T05:03:59.051Z",
+        "createdAt": "2025-05-23T04:33:08.488Z",
+        "email": "sudharshans2009@gmail.com",
+        "loginAttempts": 0
+      }
+    ],
+    "populatedAuthors": [
+      {
+        "id": 2,
+        "name": "Sudharshan S"
+      }
+    ],
+    "publishedDate": "2025-05-23T11:30:00.000Z",
+    "status": "published",
+    "tags": [],
+    "categories": [],
+    "updatedAt": "2025-05-23T04:51:44.903Z",
+    "createdAt": "2025-05-23T04:37:18.203Z"
+  }
+]

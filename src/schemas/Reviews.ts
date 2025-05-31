@@ -1,4 +1,7 @@
 import type { CollectionConfig } from "payload";
+import { admins } from "./access/admins";
+import { checkRole } from "./access/check-role";
+import { anyone } from "./access/anyone";
 
 export const Reviews: CollectionConfig = {
   slug: "reviews",
@@ -10,7 +13,11 @@ export const Reviews: CollectionConfig = {
     useAsTitle: "name",
   },
   access: {
-    read: () => true,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
+    read: anyone,
+    update: admins,
   },
   fields: [
     {

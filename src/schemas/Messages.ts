@@ -1,6 +1,6 @@
-import { anyone } from "@/security/anyone";
-import { authenticated } from "@/security/authenticated";
 import type { CollectionConfig } from "payload";
+import { adminsAndUser } from "./access/users";
+import { checkRole } from "./access/check-role";
 
 export const Messages: CollectionConfig = {
   slug: "messages",
@@ -12,11 +12,11 @@ export const Messages: CollectionConfig = {
     useAsTitle: "name",
   },
   access: {
-    admin: authenticated,
-    create: anyone,
-    delete: anyone,
-    read: anyone,
-    update: anyone,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: adminsAndUser,
+    delete: adminsAndUser,
+    read: adminsAndUser,
+    update: adminsAndUser,
   },
   fields: [
     {
@@ -53,7 +53,7 @@ export const Messages: CollectionConfig = {
           value: "reply",
         },
         {
-          label: "Iniitial",
+          label: "Initial",
           value: "initial",
         },
       ],

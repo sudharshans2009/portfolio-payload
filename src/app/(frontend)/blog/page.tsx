@@ -5,31 +5,17 @@ import { Metadata } from "next";
 import { getPayload } from "payload";
 
 export const metadata: Metadata = generateMetadata(
-  "https://sudharshans2009.live/blog",
+  "https://sudharshans.me/blog",
   "SS.live - Blog",
 );
 
 export default async function BlogPage() {
   const config = await payloadConfig;
   const payload = await getPayload({ config });
-  const services = await payload.find({
-    collection: "services",
-    sort: "createdAt",
-  });
-  const reviews = await payload.find({
-    collection: "reviews",
-    sort: "createdAt",
-  });
-  const faqs = await payload.find({
-    collection: "faqs",
+  const blog = await payload.find({
+    collection: "blog",
     sort: "createdAt",
   });
 
-  return (
-    <BlogClientPage
-      services={services.docs}
-      reviews={reviews.docs}
-      faqs={faqs.docs}
-    />
-  );
+  return <BlogClientPage blog={blog.docs} />;
 }

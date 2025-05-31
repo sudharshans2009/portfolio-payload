@@ -22,7 +22,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = generateMetadata(
-  "https://sudharshans2009.live",
+  "https://sudharshans.me",
   "SS.live",
 );
 
@@ -58,7 +58,7 @@ export default async function RootLayout({
             <Navbar user={user} />
             {children}
             <Footer />
-            <UnreadReplys ip={ip} />
+            <UnreadReplys ip={ip} user={user} />
           </ThemeProvider>
         </QueryProvider>
         <Toaster position="bottom-right" richColors />

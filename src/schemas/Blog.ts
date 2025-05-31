@@ -1,8 +1,9 @@
 import { CollectionConfig } from "payload";
 import { populateAuthors } from "./hooks/populateAuthors";
 import { updateSlug } from "./hooks/updateSlug";
-import { authenticated } from "@/security/authenticated";
-import { anyone } from "@/security/anyone";
+import { admins } from "./access/admins";
+import { anyone } from "./access/anyone";
+import { checkRole } from "./access/check-role";
 
 export const Blog: CollectionConfig = {
   slug: "blog",
@@ -14,11 +15,11 @@ export const Blog: CollectionConfig = {
     useAsTitle: "title",
   },
   access: {
-    admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
     read: anyone,
-    update: authenticated,
+    update: admins,
   },
   fields: [
     {

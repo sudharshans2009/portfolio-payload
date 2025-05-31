@@ -6,7 +6,7 @@ export function useHydrate<T>(
   useFn: (value: unknown) => unknown,
   [defaultState, defaultValue]: unknown[] = [],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  rawDepsFn: (value: any) => any[]
+  rawDepsFn: (value: any) => any[],
 ): T {
   const [value, setValue] = useState(defaultState || null);
   const fn = useFn(defaultValue);

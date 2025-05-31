@@ -12,7 +12,7 @@ import { stringify } from "qs-esm";
 
 export default function Footer() {
   const params = stringify({
-    sort: "-createdAt",
+    sort: "createdAt",
   });
 
   const query = useQuery<PaginatedDocs<Page>>({
@@ -79,12 +79,17 @@ export default function Footer() {
               {query.data?.docs.map((link) => (
                 <li key={link.title}>
                   <Link
-                    href={`/${link.slug}`}
+                    href={`/terms/${link.slug}`}
                     className="flex gap-2 items-center text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                   >
                     {(() => {
-                      const Icon = Lucide[link.icon]
-                      return <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />;
+                      const Icon =
+                        (Lucide?.[
+                          link.icon as keyof typeof Lucide
+                        ] as Lucide.LucideIcon) || Lucide.HelpCircle;
+                      return Icon ? (
+                        <Icon className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      ) : null;
                     })()}
                     {link.title}
                   </Link>
@@ -99,7 +104,7 @@ export default function Footer() {
             <div className="space-y-4">
               <p className="flex items-center gap-3 text-gray-400">
                 <Mail className="w-5 h-5 text-purple-400" />
-                contact@sudharshans2009.live
+                contact@sudharshans.me
               </p>
               <p className="flex items-center gap-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-purple-400" />

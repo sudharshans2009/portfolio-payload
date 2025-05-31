@@ -1,4 +1,5 @@
-import { sqliteAdapter } from "@payloadcms/db-sqlite";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
@@ -12,7 +13,6 @@ import { Media } from "./schemas/Media";
 import { FAQs } from "./schemas/FAQs";
 import { Reviews } from "./schemas/Reviews";
 import { Projects } from "./schemas/Projects";
-import { Services } from "./schemas/Services";
 import { RateLimits } from "./schemas/RateLimits";
 import { Messages } from "./schemas/Messages";
 import { Blog } from "./schemas/Blog";
@@ -22,6 +22,7 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
   admin: {
     importMap: {
       baseDir: path.resolve(dirname),
@@ -34,20 +35,21 @@ export default buildConfig({
     FAQs,
     Reviews,
     Projects,
-    Services,
     RateLimits,
     Messages,
     Blog,
     Page,
   ],
   editor: lexicalEditor(),
+  cors: [process.env.NEXT_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  csrf: [process.env.NEXT_PUBLIC_SERVER_URL || ""].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URI || "",
+  db: vercelPostgresAdapter({
+    pool: {
+      connectionString: process.env.POSTGRES_URL || "",
     },
   }),
   sharp,
@@ -56,7 +58,15 @@ export default buildConfig({
     defaultFromName: "Sudharshan S",
     apiKey: process.env.RESEND_API_KEY || "",
   }),
-  plugins: [payloadCloudPlugin()],
+  plugins: [
+    payloadCloudPlugin(),
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || "",
+    }),
+  ],
   jobs: {
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {

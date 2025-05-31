@@ -11,9 +11,11 @@ import {
 import { headers } from "next/headers";
 import { Metadata } from "next";
 import { generateMetadata } from "@/lib/metadata";
+import payloadConfig from "@/payload.config";
+import { getPayload } from "payload";
 
 export const metadata: Metadata = generateMetadata(
-  "https://sudharshans2009.live/contact",
+  "https://sudharshans.me/contact",
   "SS.live - Contact",
 );
 
@@ -21,6 +23,9 @@ export default async function ContactPage() {
   const request = await headers();
   const ip =
     request.get("x-forwarded-for") || request.get("x-real-ip") || "Unknown IP";
+  const config = await payloadConfig;
+  const payload = await getPayload({ config });
+  const { user } = await payload.auth({ headers: request });
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -68,9 +73,9 @@ export default async function ContactPage() {
                 <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
                   <CopyButton
                     icon={<Clipboard className="w-4 h-4" />}
-                    clipboardText="contact@sudharshans2009.live"
+                    clipboardText="contact@sudharshans.me"
                   >
-                    contact@sudharshans2009.live
+                    contact@sudharshans.me
                   </CopyButton>
                   <div className="flex items-center justify-center gap-4">
                     {socialLinks.map((social) => (
@@ -147,7 +152,7 @@ export default async function ContactPage() {
                   </div>
                 </div>
               </Motion>
-              <ContactForm ip={ip} />
+              <ContactForm user={user} ip={ip} />
             </div>
           </div>
         </section>
@@ -180,7 +185,7 @@ export default async function ContactPage() {
                 ideas and opportunities.
               </Motion>
             </div>
-            <InitialMessages ip={ip} />
+            <InitialMessages ip={ip} user={user} />
           </div>
         </section>
         <section
@@ -213,7 +218,7 @@ export default async function ContactPage() {
                 feedback, feel free to reach out.
               </Motion>
             </div>
-            <ReplyMessages ip={ip} />
+            <ReplyMessages ip={ip} user={user} />
           </div>
         </section>
       </div>

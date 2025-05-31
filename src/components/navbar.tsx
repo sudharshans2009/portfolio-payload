@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { siteNavLinks, socialLinks } from "@/constants";
-import { ChevronsUpDown, Computer, Moon, Sun } from "lucide-react";
+import { ChevronsUpDown, Moon, Sun, UserRoundCog } from "lucide-react";
 import { useNavbar } from "@/hooks/use-navbar";
 import Motion from "./motion";
 import { usePathname } from "next/navigation";
@@ -92,17 +92,20 @@ export default function Navbar({
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500/50 group-hover:w-full transition-all duration-300" />
             </Link>
             <div className="flex items-center gap-4">
-              {user && (
-                <Motion
-                  element={Link}
-                  href="/admin"
-                  className="p-2 rounded-full bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Computer />
-                </Motion>
-              )}
+              <Motion
+                element={Link}
+                href="/account"
+                className="p-2 flex gap-2 rounded-full bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <p>
+                  {user?.email
+                    ? `${user?.firstName} ${user?.lastName}`
+                    : "Login"}
+                </p>
+                <UserRoundCog />
+              </Motion>
               <Motion
                 element="button"
                 whileHover={{ scale: 1.1 }}

@@ -1,6 +1,7 @@
-import { anyone } from "@/security/anyone";
-import { authenticated } from "@/security/authenticated";
 import type { CollectionConfig } from "payload";
+import { checkRole } from "./access/check-role";
+import { admins } from "./access/admins";
+import { anyone } from "./access/anyone";
 
 export const Projects: CollectionConfig = {
   slug: "projects",
@@ -12,11 +13,11 @@ export const Projects: CollectionConfig = {
     useAsTitle: "title",
   },
   access: {
-    admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
     read: anyone,
-    update: authenticated,
+    update: admins,
   },
   fields: [
     {

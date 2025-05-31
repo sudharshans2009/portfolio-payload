@@ -1,23 +1,33 @@
 "use server";
 
 import payloadConfig from "@/payload.config";
-import { FormSchema, formSchema } from "@/schemas/forms/submitEmail";
+import { FormSchema, formSchema } from "@/forms/submitEmail";
 import { revalidatePath } from "next/cache";
-import { cookies as nextCookies } from "next/headers";
+import { headers, cookies as nextCookies } from "next/headers";
 import { getPayload } from "payload";
 
 export async function submitEmail(formData: FormSchema) {
   try {
+    const request = await headers();
     const config = await payloadConfig;
     const payload = await getPayload({ config });
+    const { user } = await payload.auth({ headers: request });
 
     const parsedBody = formSchema.safeParse(formData);
+
+    if (!user?.email) {
+      throw new Error("You must be logged in to send a message.");
+    }
 
     if (!parsedBody.data) {
       throw new Error("Invalid form data.");
     }
 
     const { email, name, message_content: message, ip } = parsedBody.data;
+
+    if (user?.email !== email) {
+      throw new Error("Email does not match the logged-in user.");
+    }
 
     if (!email || !name || !message) {
       throw new Error("All fields are required.");

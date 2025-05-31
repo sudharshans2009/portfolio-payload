@@ -1,15 +1,16 @@
-import { anyone } from "@/security/anyone";
-import { authenticated } from "@/security/authenticated";
 import type { CollectionConfig } from "payload";
+import { checkRole } from "./access/check-role";
+import { admins } from "./access/admins";
+import { anyone } from "./access/anyone";
 
 export const Media: CollectionConfig = {
   slug: "media",
   access: {
-    admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
     read: anyone,
-    update: authenticated,
+    update: admins,
   },
   fields: [
     {

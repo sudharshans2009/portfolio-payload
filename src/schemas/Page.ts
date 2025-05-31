@@ -1,7 +1,9 @@
-import { anyone } from "@/security/anyone";
-import { authenticated } from "@/security/authenticated";
-import { CollectionConfig } from "payload";
+import type { CollectionConfig } from "payload";
 import * as Lucide from "lucide-react";
+import { admins } from "./access/admins";
+import { anyone } from "./access/anyone";
+import { checkRole } from "./access/check-role";
+import LucideEnum from "./Lucide";
 
 export const Page: CollectionConfig = {
   slug: "page",
@@ -13,11 +15,11 @@ export const Page: CollectionConfig = {
     useAsTitle: "title",
   },
   access: {
-    admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
     read: anyone,
-    update: authenticated,
+    update: admins,
   },
   fields: [
     {
@@ -29,7 +31,7 @@ export const Page: CollectionConfig = {
       name: "icon",
       type: "select",
       required: true,
-      options: Object.keys(Lucide)
+      options: LucideEnum,
     },
     {
       name: "slug",

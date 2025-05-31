@@ -172,7 +172,7 @@
                     "format": 0,
                     "mode": "normal",
                     "style": "",
-                    "text": "contact@sudharshans2009.live",
+                    "text": "contact@sudharshans.me",
                     "type": "text",
                     "version": 1
                   }
@@ -180,7 +180,7 @@
                 "direction": "ltr",
                 "fields": {
                   "linkType": "custom",
-                  "url": "mailto:contact@sudharshans2009.live"
+                  "url": "mailto:contact@sudharshans.me"
                 },
                 "format": "",
                 "indent": 0,

@@ -6,13 +6,17 @@ import ProjectCard from "@/components/project-card";
 import { skillCategories, skills, stack, stats } from "@/constants";
 import { Link, Phone, Sparkles } from "lucide-react";
 import Image from "next/image";
+import NextLink from "next/link";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import { generateMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
+import { UnreadReplysBadge } from "@/components/unread-replys";
+import { headers } from "next/headers";
+import * as Lucide from "lucide-react";
 
 export const metadata: Metadata = generateMetadata(
-  "https://sudharshans2009.live",
+  "https://sudharshans.me",
   "SS.live - Home",
 );
 
@@ -21,8 +25,13 @@ export default async function HomePage() {
   const payload = await getPayload({ config });
   const projects = await payload.find({
     collection: "projects",
-    sort: "createdAt",
+    sort: "-createdAt",
+    limit: 6,
   });
+  const request = await headers();
+  const ip =
+    request.get("x-forwarded-for") || request.get("x-real-ip") || "Unknown IP";
+  const { user } = await payload.auth({ headers: request });
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -68,29 +77,34 @@ export default async function HomePage() {
                   for new challenges and opportunities to learn and grow.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-                  <Motion
-                    element="button"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group h-14 relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25"
-                  >
-                    <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                    <span className="relative flex items-center justify-center gap-2">
-                      View Projects
-                      <Link className="w-4 h-4" />
-                    </span>
-                  </Motion>
-                  <Motion
-                    element="button"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group h-14 px-8 py-4 bg-transparent border border-purple-500/20 dark:border-purple-500/30 hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl transition-all duration-300 hover:bg-purple-500/5 dark:hover:bg-purple-500/10"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Contact Me
-                      <Phone className="w-4 h-4" />
-                    </span>
-                  </Motion>
+                  <NextLink href="/projects" className="h-14">
+                    <Motion
+                      element="button"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group w-full h-14 relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25"
+                    >
+                      <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                      <span className="relative flex items-center justify-center gap-2">
+                        View Projects
+                        <Link className="w-4 h-4" />
+                      </span>
+                    </Motion>
+                  </NextLink>
+                  <NextLink href="/contact" className="h-14">
+                    <Motion
+                      element="button"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative w-full h-14 px-8 py-4 bg-transparent border border-purple-500/20 dark:border-purple-500/30 hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl transition-all duration-300 hover:bg-purple-500/5 dark:hover:bg-purple-500/10"
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        Contact Me
+                        <Phone className="w-4 h-4" />
+                      </span>
+                      <UnreadReplysBadge ip={ip} user={user} />
+                    </Motion>
+                  </NextLink>
                 </div>
                 <Motion
                   element="div"

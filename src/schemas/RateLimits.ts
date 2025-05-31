@@ -1,6 +1,7 @@
-import { anyone } from "@/security/anyone";
-import { authenticated } from "@/security/authenticated";
 import type { CollectionConfig } from "payload";
+import { checkRole } from "./access/check-role";
+import { admins } from "./access/admins";
+import { anyone } from "./access/anyone";
 
 export const RateLimits: CollectionConfig = {
   slug: "rate_limits",
@@ -12,11 +13,11 @@ export const RateLimits: CollectionConfig = {
     useAsTitle: "key",
   },
   access: {
-    admin: authenticated,
-    create: anyone,
-    delete: authenticated,
+    admin: ({ req: { user } }) => checkRole(["admin"], user),
+    create: admins,
+    delete: admins,
     read: anyone,
-    update: anyone,
+    update: admins,
   },
   fields: [
     {

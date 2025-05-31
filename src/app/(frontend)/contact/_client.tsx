@@ -27,12 +27,13 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { formSchema, FormSchema } from "@/schemas/forms/submitEmail";
+import { formSchema, FormSchema } from "@/forms/submitEmail";
 import MessageCard from "@/components/message-card";
 import Link from "next/link";
-import { PaginatedDocs } from "payload";
+import { PaginatedDocs, User } from "payload";
 import { Message } from "@/payload-types";
 import { stringify } from "qs-esm";
+import { email } from "node_modules/payload/dist/fields/validations";
 
 interface Props {
   children?: React.ReactNode;
@@ -85,12 +86,22 @@ export function CopyButton({
   );
 }
 
-export function ContactForm({ ip }: { ip: string }) {
+export function ContactForm({
+  ip,
+  user,
+}: {
+  ip: string;
+  user:
+    | (User & {
+        collection: "users";
+      })
+    | null;
+}) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: "",
+      email: user?.email || "",
       message_content: "",
       ip,
     },
@@ -98,14 +109,21 @@ export function ContactForm({ ip }: { ip: string }) {
 
   const { mutate, isPending } = useMutation({
     mutationFn: submitEmail,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (!data.success) {
+        toast.error(data?.error || "Failed to send message.", {
+          id: "form-submit",
+        });
+        return;
+      }
+
       toast.success("Successfully sent a message!", {
         id: "form-submit",
       });
 
       form.reset({
         name: "",
-        email: "",
+        email: user?.email || "",
         message_content: "",
         ip,
       });
@@ -120,6 +138,12 @@ export function ContactForm({ ip }: { ip: string }) {
 
   const onSubmit = useCallback(
     (values: FormSchema) => {
+      if (!user?.email) {
+        toast.error("You must be logged in to send a message.", {
+          id: "form-submit",
+        });
+        return;
+      }
       toast.loading("Sending message...", {
         id: "form-submit",
       });
@@ -173,7 +197,7 @@ export function ContactForm({ ip }: { ip: string }) {
                 <Input
                   type="email"
                   {...field}
-                  disabled={isPending}
+                  disabled={true}
                   placeholder="Your Email"
                   className="w-full h-14 pl-14 pr-4 py-3 text-lg placeholder:text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
@@ -233,17 +257,28 @@ export function ContactForm({ ip }: { ip: string }) {
   );
 }
 
-export function InitialMessages({ ip }: { ip: string }) {
+export function InitialMessages({
+  ip,
+  user,
+}: {
+  ip: string;
+  user:
+    | (User & {
+        collection: "users";
+      })
+    | null;
+}) {
   const params = stringify({
     where: {
-      ip: {
-        equals: ip,
+      email: {
+        equals: user?.email,
       },
     },
   });
   const query = useQuery<PaginatedDocs<Message>>({
     queryKey: ["messages"],
     queryFn: async () => {
+      if (!user?.email) return {};
       const res = await fetch(`/api/messages?${params}`);
       if (!res.ok) throw new Error("Failed to fetch messages");
       return res.json();
@@ -264,7 +299,7 @@ export function InitialMessages({ ip }: { ip: string }) {
           key={message.message + message.id}
         />
       ))}
-      {messages?.length === 0 && (
+      {messages?.length == 0 && (
         <Link className="h-full" href="#contact">
           <Motion
             element="div"
@@ -281,21 +316,48 @@ export function InitialMessages({ ip }: { ip: string }) {
           </Motion>
         </Link>
       )}
+      {!messages && (
+        <Link className="h-full" href="/account">
+          <Motion
+            element="div"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="group h-full relative bg-white dark:bg-gray-800/50 rounded-2xl overflow-hidden backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50"
+          >
+            <div className="p-8 h-full flex flex-col gap-4 items-center justify-center">
+              Login to send me a message
+            </div>
+          </Motion>
+        </Link>
+      )}
     </div>
   );
 }
 
-export function ReplyMessages({ ip }: { ip: string }) {
+export function ReplyMessages({
+  ip,
+  user,
+}: {
+  ip: string;
+  user:
+    | (User & {
+        collection: "users";
+      })
+    | null;
+}) {
   const params = stringify({
     where: {
-      ip: {
-        equals: ip,
+      email: {
+        equals: user?.email,
       },
     },
   });
   const query = useQuery<PaginatedDocs<Message>>({
     queryKey: ["messages"],
     queryFn: async () => {
+      if (!user?.email) return {};
       const res = await fetch(`/api/messages?${params}`);
       if (!res.ok) throw new Error("Failed to fetch messages");
       return res.json();
@@ -330,6 +392,22 @@ export function ReplyMessages({ ip }: { ip: string }) {
             Please wait for my reply
           </div>
         </Motion>
+      )}
+      {!messages && (
+        <Link className="h-full" href="/account">
+          <Motion
+            element="div"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="group h-full relative bg-white dark:bg-gray-800/50 rounded-2xl overflow-hidden backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50"
+          >
+            <div className="p-8 h-full flex flex-col gap-4 items-center justify-center">
+              Login to read my replies
+            </div>
+          </Motion>
+        </Link>
       )}
     </div>
   );

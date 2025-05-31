@@ -2,49 +2,36 @@
 
 import { useEffect, useState } from "react";
 import Motion from "@/components/motion";
-import ReviewCard from "@/components/review-card";
-import ServiceCard from "@/components/service-card";
 import Image from "next/image";
 import { stack } from "@/constants";
 import { Input } from "@/components/ui/input";
 import { Search, Sparkles } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Faq, Review, Service } from "@/payload-types";
-import RichText from "@/components/rich-text";
+import { Blog } from "@/payload-types";
 
-export default function ServicesClientPage({
-  services,
-  reviews,
-  faqs,
-}: {
-  services: Service[];
-  reviews: Review[];
-  faqs: Faq[];
-}) {
+export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
+  const blogMeta = blog.map((page) => {
+    const { content: _content, ..._page } = page;
+    return _page;
+  });
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredServices, setFilteredServices] = useState(services);
+  const [filteredBlog, setFilteredBlog] = useState(blogMeta);
 
   useEffect(() => {
-    setFilteredServices(
-      services.filter(
-        (service) =>
-          service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          service.description
+    setFilteredBlog(
+      blogMeta.filter(
+        (page) =>
+          page.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (page.description ?? "")
             .toLowerCase()
             .includes(searchQuery.toLowerCase()) ||
-          service.tags
+          page.tags
             ?.map(({ tag }) => tag)
             .join(" ")
             .toLowerCase()
             .includes(searchQuery.toLowerCase()),
       ),
     );
-  }, [searchQuery, services]);
+  }, [searchQuery, blogMeta]);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -162,13 +149,13 @@ export default function ServicesClientPage({
               </Motion>
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
-              {filteredServices.map((service, index) => (
+              {/* {filteredServices.map((service, index) => (
                 <ServiceCard
                   service={service}
                   index={index}
                   key={service.title}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
         </section>
@@ -202,9 +189,9 @@ export default function ServicesClientPage({
               </Motion>
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
-              {reviews.map((review, index) => (
+              {/* {reviews.map((review, index) => (
                 <ReviewCard review={review} index={index} key={review.name} />
-              ))}
+              ))} */}
             </div>
           </div>
         </section>
@@ -237,28 +224,10 @@ export default function ServicesClientPage({
                 navigate challenges and improve your workflow.
               </Motion>
             </div>
-            <div className="w-full">
-              <Accordion
-                type="single"
-                collapsible
-                className="relative flex w-full flex-col items-center justify-center gap-5"
-              >
-                {faqs.map((faq, index) => (
-                  <AccordionItem
-                    className="w-full"
-                    value={`accord-${index}`}
-                    key={faq.question}
-                  >
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      <RichText
-                        data={faq.answer}
-                        className="text-gray-600 dark:text-gray-300"
-                      />
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+            <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
+              {/* {reviews.map((review, index) => (
+                <ReviewCard review={review} index={index} key={review.name} />
+              ))} */}
             </div>
           </div>
         </section>
