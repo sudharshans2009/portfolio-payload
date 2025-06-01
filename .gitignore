@@ -12,7 +12,7 @@
 /media/*
 
 # database
-./dev.db
+dev.db
 
 # testing
 /coverage
