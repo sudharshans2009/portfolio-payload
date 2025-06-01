@@ -10,7 +10,6 @@ import { Blog } from "@/payload-types";
 import BlogCard from "@/components/blog-card";
 
 export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
-
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBlog, setFilteredBlog] = useState(blog);
 
@@ -148,11 +147,7 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
               {filteredBlog.map((blog, index) => (
-                <BlogCard
-                  blog={blog}
-                  index={index}
-                  key={blog.title}
-                />
+                <BlogCard blog={blog} index={index} key={blog.title} />
               ))}
             </div>
           </div>
@@ -188,11 +183,7 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
               {filteredBlog.map((blog, index) => (
-                <BlogCard
-                  blog={blog}
-                  index={index}
-                  key={blog.title}
-                />
+                <BlogCard blog={blog} index={index} key={blog.title} />
               ))}
             </div>
           </div>
@@ -228,11 +219,7 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
               {filteredBlog.map((blog, index) => (
-                <BlogCard
-                  blog={blog}
-                  index={index}
-                  key={blog.title}
-                />
+                <BlogCard blog={blog} index={index} key={blog.title} />
               ))}
             </div>
           </div>

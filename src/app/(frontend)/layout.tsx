@@ -12,6 +12,8 @@ import { headers } from "next/headers";
 import UnreadReplys from "@/components/unread-replys";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/app/styles.css";
 
 const poppins = Poppins({
@@ -22,7 +24,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me"
+  "SS.me",
 );
 
 export const viewport: Viewport = {
@@ -59,6 +61,8 @@ export default async function RootLayout({
           </ThemeProvider>
         </QueryProvider>
         <Toaster position="bottom-right" richColors />
+        <Analytics />
+        <SpeedInsights />
         {typeof window !== "undefined" && (
           <>
             <Script src="./scripts/script.js" />

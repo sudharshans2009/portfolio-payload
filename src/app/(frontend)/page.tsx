@@ -16,7 +16,7 @@ import { headers } from "next/headers";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me - Home"
+  "SS.me - Home",
 );
 
 export default async function HomePage() {

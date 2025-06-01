@@ -16,7 +16,7 @@ import { getPayload } from "payload";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me/contact",
-  "SS.me - Contact"
+  "SS.me - Contact",
 );
 
 export default async function ContactPage() {

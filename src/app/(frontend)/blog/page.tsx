@@ -6,7 +6,7 @@ import { getPayload } from "payload";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me/blog",
-  "SS.me - Blog"
+  "SS.me - Blog",
 );
 
 export default async function BlogPage() {

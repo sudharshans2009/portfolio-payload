@@ -83,13 +83,20 @@ export default async function TermsPage({
                     if (typeof author === "number") return null;
 
                     return (
-                    <span
-                      key={author.email}
-                      className="text-gray-500 dark:text-gray-400 flex items-center gap-2"
-                    >
-                        <Image src="/images/madlad-logo.png" width={32} height={32} className="rounded-full" alt="Madlad Logo" /> {author.firstName}{" "}{author.lastName}
-                    </span>
-                  )
+                      <span
+                        key={author.email}
+                        className="text-gray-500 dark:text-gray-400 flex items-center gap-2"
+                      >
+                        <Image
+                          src="/images/madlad-logo.png"
+                          width={32}
+                          height={32}
+                          className="rounded-full"
+                          alt="Madlad Logo"
+                        />{" "}
+                        {author.firstName} {author.lastName}
+                      </span>
+                    );
                   })}
                 </p>
                 <div>

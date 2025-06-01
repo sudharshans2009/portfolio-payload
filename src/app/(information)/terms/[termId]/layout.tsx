@@ -14,6 +14,8 @@ import UnreadReplys from "@/components/unread-replys";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import QueryProvider from "@/components/providers/query-provider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +25,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me"
+  "SS.me",
 );
 
 export const viewport: Viewport = {
@@ -60,6 +62,8 @@ export default async function RootLayout({
           </ThemeProvider>
         </QueryProvider>
         <Toaster position="bottom-right" richColors />
+        <Analytics />
+        <SpeedInsights />
         {typeof window !== "undefined" && (
           <>
             <Script src="./scripts/script.js" />
