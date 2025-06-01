@@ -4,7 +4,7 @@
     "title": "Cookie Policy",
     "icon": "Cookie",
     "slug": "cookies",
-    "description": "Cookie and Data Storage Policy for SS.live, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
+    "description": "Cookie and Data Storage Policy for SS.me, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
     "content": {
       "root": {
         "children": [
@@ -92,7 +92,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -292,7 +292,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -1899,7 +1899,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -1937,7 +1937,7 @@
     "title": "EULA",
     "icon": "Wrench",
     "slug": "eula",
-    "description": "End User License Agreement (EULA) for SS.live, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
+    "description": "End User License Agreement (EULA) for SS.me, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
     "content": {
       "root": {
         "children": [
@@ -2025,7 +2025,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -2152,7 +2152,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -3089,7 +3089,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -3127,7 +3127,7 @@
     "title": "Privacy Policy",
     "icon": "Lock",
     "slug": "privacy",
-    "description": "Privacy Policy for SS.live, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
+    "description": "Privacy Policy for SS.me, owned by Sudharshan S. It includes rules for using the website, intellectual property rights, disclaimers, and contact details. The document ensures legal compliance and sets user expectations.",
     "content": {
       "root": {
         "children": [
@@ -3215,7 +3215,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -4702,7 +4702,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -4741,7 +4741,7 @@
     "title": "Terms of Service",
     "icon": "FileText",
     "slug": "tos",
-    "description": "Terms of Service for SS.live, a website owned by Sudharshan S, a Fullstack Developer and Web Designer. It outlines the rules, intellectual property rights, disclaimers, and contact information for users of the service. The document ensures legal compliance and sets expectations for users.",
+    "description": "Terms of Service for SS.me, a website owned by Sudharshan S, a Fullstack Developer and Web Designer. It outlines the rules, intellectual property rights, disclaimers, and contact information for users of the service. The document ensures legal compliance and sets expectations for users.",
     "content": {
       "root": {
         "children": [
@@ -4829,7 +4829,7 @@
                 "format": 1,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live",
+                "text": "SS.me",
                 "type": "text",
                 "version": 1
               },
@@ -4933,7 +4933,7 @@
                 "format": 0,
                 "mode": "normal",
                 "style": "",
-                "text": "By using SS.live, you confirm that you are at least 18 years old or have the consent of a parent or guardian to use the Service. Your continued use of the Service constitutes your acceptance of these Terms.",
+                "text": "By using SS.me, you confirm that you are at least 18 years old or have the consent of a parent or guardian to use the Service. Your continued use of the Service constitutes your acceptance of these Terms.",
                 "type": "text",
                 "version": 1
               }
@@ -5010,7 +5010,7 @@
                 "format": 0,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live is owned and operated by ",
+                "text": "SS.me is owned and operated by ",
                 "type": "text",
                 "version": 1
               },
@@ -5273,7 +5273,7 @@
                 "format": 0,
                 "mode": "normal",
                 "style": "",
-                "text": "All content on SS.live, including but not limited to text, graphics, logos, and code, is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or modify any content without prior written consent from Sudharshan S.",
+                "text": "All content on SS.me, including but not limited to text, graphics, logos, and code, is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or modify any content without prior written consent from Sudharshan S.",
                 "type": "text",
                 "version": 1
               }
@@ -5350,7 +5350,7 @@
                 "format": 0,
                 "mode": "normal",
                 "style": "",
-                "text": "SS.live may contain links to third-party websites or services. These links are provided for your convenience, and Sudharshan S is not responsible for the content, policies, or practices of any third-party websites.",
+                "text": "SS.me may contain links to third-party websites or services. These links are provided for your convenience, and Sudharshan S is not responsible for the content, policies, or practices of any third-party websites.",
                 "type": "text",
                 "version": 1
               }
@@ -5941,7 +5941,7 @@
                 "format": 0,
                 "mode": "normal",
                 "style": "",
-                "text": "Thank you for using SS.live!",
+                "text": "Thank you for using SS.me!",
                 "type": "text",
                 "version": 1
               }

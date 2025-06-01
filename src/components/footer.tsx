@@ -31,7 +31,7 @@ export default function Footer() {
           <div className="space-y-6">
             <Link href="/" className="inline-block">
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">
-                SS.live
+                SS.me
               </span>
             </Link>
             <p className="text-gray-300 max-w-sm">

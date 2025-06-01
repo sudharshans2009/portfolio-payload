@@ -23,7 +23,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.live"
+  "SS.me"
 );
 
 export const viewport: Viewport = {

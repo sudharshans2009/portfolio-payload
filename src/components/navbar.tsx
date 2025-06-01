@@ -87,7 +87,7 @@ export default function Navbar({
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                SS.live
+                SS.me
               </Motion>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500/50 group-hover:w-full transition-all duration-300" />
             </Link>
@@ -208,7 +208,7 @@ export default function Navbar({
                         <div
                           className={cn(
                             "absolute left-2 transition-all duration-300",
-                            nav.get === "site" ? "top-0" : "-top-full",
+                            nav.get === "site" ? "top-0" : "-top-full"
                           )}
                         >
                           <p>Site</p>
@@ -246,19 +246,19 @@ export default function Navbar({
                     {(nav.get === "site"
                       ? siteNavLinks
                       : (siteNavLinks.find((link) => link.href === pathname)
-                        ?.pageNavLinks ?? [])
+                          ?.pageNavLinks ?? [])
                     ).length > 0 ? (
                       (nav.get === "site"
-                      ? siteNavLinks
-                      : (siteNavLinks.find((link) => link.href === pathname)
-                        ?.pageNavLinks ?? [])
+                        ? siteNavLinks
+                        : (siteNavLinks.find((link) => link.href === pathname)
+                            ?.pageNavLinks ?? [])
                       ).map((link, index) => (
-                      <NavItem
-                        key={link.name}
-                        menu={menu}
-                        link={link}
-                        index={index}
-                      />
+                        <NavItem
+                          key={link.name}
+                          menu={menu}
+                          link={link}
+                          index={index}
+                        />
                       ))
                     ) : (
                       <p className="flex flex-col justify-center items-center rounded-2xl gap-4 p-8 border-gray-200/50 dark:border-gray-700/50 shadow-xl dark:shadow-gray-900/10 hover:border-purple-500/50 dark:hover:border-purple-500/50 text-gray-500 border dark:text-gray-400 transition-all duration-300">

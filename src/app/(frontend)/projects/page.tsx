@@ -6,7 +6,7 @@ import ProjectsClientPage from "./_client";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me/projects",
-  "SS.live - Projects",
+  "SS.me - Projects"
 );
 
 export default async function ProjectsPage() {

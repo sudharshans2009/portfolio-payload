@@ -11,7 +11,7 @@ export const Header = () => {
     <header className={classes.header}>
       <Gutter className={classes.wrap}>
         <Link className={classes.heading} href="/">
-          SS.live
+          SS.me
           <span>•</span>
           <span className={classes.poweredBy}>Powered By</span>
           <div className={classes.logo}>

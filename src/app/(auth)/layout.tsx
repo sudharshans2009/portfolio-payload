@@ -5,8 +5,8 @@ import { AuthProvider } from "./_providers/Auth";
 import "./styles.css";
 
 export const metadata = {
-  description: "SS.live - Payload Auth",
-  title: "SS.live - Payload Auth",
+  description: "SS.me - Payload Auth",
+  title: "SS.me - Payload Auth",
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
