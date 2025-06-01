@@ -4,6 +4,7 @@ import payloadConfig from "@/payload.config";
 import Image from "next/image";
 import { getPayload } from "payload";
 import React from "react";
+import Comments from "@/components/comments";
 
 export default async function TermsPage({
   params,
@@ -114,6 +115,12 @@ export default async function TermsPage({
               <RichText
                 data={blog.docs[0].content}
                 className="text-gray-600 dark:text-gray-300 mb-8"
+              />
+              <Comments
+                repo="sudharshans2009/utterances"
+                issueTerm="blog"
+                label="Blog Comment"
+                theme="github-light"
               />
             </div>
           </div>

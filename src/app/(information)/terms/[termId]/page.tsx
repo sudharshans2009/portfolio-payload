@@ -2,6 +2,42 @@ import RichText from "@/components/rich-text";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import React from "react";
+import { Metadata } from "next";
+import { generateMetadata as generateMetadataLib } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { termId: string };
+}): Promise<Metadata> {
+  const termId = params.termId.replace("/", "");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sudharshans.me";
+  const config = await payloadConfig;
+  const payload = await getPayload({ config });
+  const term = await payload.find({
+    collection: "page",
+    where: { slug: { equals: termId } },
+    limit: 1,
+  });
+  const page: any = term.docs[0];
+  const title = page.metaTitle || page.title || "Page";
+  const description = page.metaDescription;
+  const images = page.metaImage
+    ? [
+        {
+          url: `${baseUrl}${page.metaImage.url}`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ]
+    : undefined;
+
+  return generateMetadataLib(`${baseUrl}/terms/${termId}`, title, {
+    description,
+    images,
+  });
+}
 
 export default async function TermsPage({
   params,

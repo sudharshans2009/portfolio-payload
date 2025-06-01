@@ -1,9 +1,27 @@
 import { Metadata } from "next";
 
-export function generateMetadata(pageUrl: string, pageTitle: string): Metadata {
+export interface MetadataOverrides {
+  description?: string;
+  images?: NonNullable<Metadata["openGraph"]>["images"];
+}
+export function generateMetadata(
+  pageUrl: string,
+  pageTitle: string,
+  overrides: MetadataOverrides = {}
+): Metadata {
+  const defaultDescription = "Providing the best project experience";
+  const description = overrides.description || defaultDescription;
+  const ogImages = overrides.images || [
+    {
+      url: `${pageUrl}/og.png`,
+      width: 1200,
+      height: 630,
+      alt: pageTitle,
+    },
+  ];
   return {
     title: pageTitle,
-    description: "Providing the best project experience",
+    description,
     icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
@@ -11,25 +29,20 @@ export function generateMetadata(pageUrl: string, pageTitle: string): Metadata {
     },
     openGraph: {
       title: pageTitle,
-      description: "Providing the best project experience",
+      description,
       url: pageUrl,
       siteName: pageTitle,
-      images: [
-        {
-          url: `${pageUrl}/og.png`,
-          width: 1200,
-          height: 630,
-          alt: pageTitle,
-        },
-      ],
+      images: ogImages,
       locale: "en-US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
-      description: "Providing the best project experience",
-      images: [`${pageUrl}/og.png`],
+      description,
+      images: (Array.isArray(ogImages) ? ogImages : [ogImages]).map((img) =>
+        typeof img === "string" ? img : (img as any).url
+      ),
       creator: "@sudharshans2009",
     },
     robots: {
