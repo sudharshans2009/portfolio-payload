@@ -1,8 +1,6 @@
-import { Geist } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-
-import "@/app/styles.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -14,11 +12,12 @@ import { headers } from "next/headers";
 import UnreadReplys from "@/components/unread-replys";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
+import "@/app/styles.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  preload: true,
+const poppins = Poppins({
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = generateMetadata(
@@ -48,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scheme-dark dark" suppressHydrationWarning>
       <body
-        className={cn("antialiased", geistSans.className)}
+        className={cn("antialiased", poppins.className)}
         suppressHydrationWarning
       >
         <QueryProvider>

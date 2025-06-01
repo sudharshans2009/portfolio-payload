@@ -89,7 +89,7 @@ export default function ProjectsClientPage({
                   beautiful and functional web applications. I am always looking
                   for new challenges and opportunities to learn and grow.
                 </p>
-                <div className="relative mt-6 w-full max-w-lg">
+                <div className="relative mt-6 w-full lg:max-w-lg">
                   <Search className="absolute w-8 h-8 top-3 left-3 text-purple-600 dark:text-purple-400" />
                   <Input
                     type="text"
