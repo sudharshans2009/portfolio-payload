@@ -138,6 +138,6 @@
     }
   }
   .utterances {
-    @apply max-w-full;
+    max-width: 100% !important;
   }
 }
