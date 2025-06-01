@@ -120,7 +120,6 @@ export default async function TermsPage({
                 repo="sudharshans2009/utterances"
                 issueTerm="blog"
                 label="Blog Comment"
-                theme="github-light"
               />
             </div>
           </div>
