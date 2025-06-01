@@ -8,9 +8,10 @@ import { generateMetadata as generateMetadataLib } from "@/lib/metadata";
 export async function generateMetadata({
   params,
 }: {
-  params: { termId: string };
+  params: Promise<{ termId: string }>;
 }): Promise<Metadata> {
-  const termId = params.termId.replace("/", "");
+  const { termId: rawId } = await params;
+  const termId = rawId.replace("/", "");
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sudharshans.me";
   const config = await payloadConfig;
   const payload = await getPayload({ config });
