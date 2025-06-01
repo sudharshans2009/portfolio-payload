@@ -54,7 +54,7 @@ export default buildConfig({
   }),
   sharp,
   email: resendAdapter({
-    defaultFromAddress: "contact@sudharshans2009.live",
+    defaultFromAddress: "noreply@sudharshans2009.live",
     defaultFromName: "Sudharshan S",
     apiKey: process.env.RESEND_API_KEY || "",
   }),
