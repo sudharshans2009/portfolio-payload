@@ -7,18 +7,16 @@ import { stack } from "@/constants";
 import { Input } from "@/components/ui/input";
 import { Search, Sparkles } from "lucide-react";
 import { Blog } from "@/payload-types";
+import BlogCard from "@/components/blog-card";
 
 export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
-  const blogMeta = blog.map((page) => {
-    const { content: _content, ..._page } = page;
-    return _page;
-  });
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [_filteredBlog, setFilteredBlog] = useState(blogMeta);
+  const [filteredBlog, setFilteredBlog] = useState(blog);
 
   useEffect(() => {
     setFilteredBlog(
-      blogMeta.filter(
+      blog.filter(
         (page) =>
           page.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           (page.description ?? "")
@@ -31,7 +29,7 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
             .includes(searchQuery.toLowerCase()),
       ),
     );
-  }, [searchQuery, blogMeta]);
+  }, [searchQuery, blog]);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -149,13 +147,13 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
               </Motion>
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
-              {/* {filteredServices.map((service, index) => (
-                <ServiceCard
-                  service={service}
+              {filteredBlog.map((blog, index) => (
+                <BlogCard
+                  blog={blog}
                   index={index}
-                  key={service.title}
+                  key={blog.title}
                 />
-              ))} */}
+              ))}
             </div>
           </div>
         </section>
@@ -189,9 +187,13 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
               </Motion>
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
-              {/* {reviews.map((review, index) => (
-                <ReviewCard review={review} index={index} key={review.name} />
-              ))} */}
+              {filteredBlog.map((blog, index) => (
+                <BlogCard
+                  blog={blog}
+                  index={index}
+                  key={blog.title}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -225,9 +227,13 @@ export default function ServicesClientPage({ blog }: { blog: Blog[] }) {
               </Motion>
             </div>
             <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
-              {/* {reviews.map((review, index) => (
-                <ReviewCard review={review} index={index} key={review.name} />
-              ))} */}
+              {filteredBlog.map((blog, index) => (
+                <BlogCard
+                  blog={blog}
+                  index={index}
+                  key={blog.title}
+                />
+              ))}
             </div>
           </div>
         </section>

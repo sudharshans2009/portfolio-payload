@@ -6,7 +6,7 @@ import { Book } from "lucide-react";
 import { formatImage } from "@/lib/utils";
 import { Blog } from "@/payload-types";
 
-export default function ProjectCard({
+export default function BlogCard({
   blog,
   index,
 }: {
@@ -55,7 +55,7 @@ export default function ProjectCard({
             element="a"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href={`/${blog.slug}` || "#"}
+            href={`/blog/${blog.slug}` || "#"}
             className="px-6 py-2.5 bg-purple-600 dark:bg-purple-500 text-white rounded-lg flex items-center gap-2 hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors shadow-lg shadow-purple-500/20"
           >
             Read Now
