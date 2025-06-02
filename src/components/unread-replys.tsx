@@ -2,26 +2,23 @@
 
 import { useHydrate } from "@/hooks/use-hydrate";
 import { Message } from "@/payload-types";
+import { EmailAddress } from "@clerk/nextjs/server";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PaginatedDocs, User } from "payload";
+import { PaginatedDocs } from "payload";
 import { stringify } from "qs-esm";
 
 export default function UnreadReplys({
-  user,
+  email,
 }: {
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
+  email: EmailAddress["emailAddress"] | null | undefined;
 }) {
   const pathname = useHydrate<string>(usePathname, ["/"], ({ fn }) => [fn]);
   const params = stringify({
     where: {
       email: {
-        equals: user?.email,
+        equals: email,
       },
     },
   });
@@ -32,7 +29,7 @@ export default function UnreadReplys({
       if (!res.ok) throw new Error("Failed to fetch unread messages");
       return res.json();
     },
-    refetchInterval: 10000,
+    refetchInterval: 1000 * 60 * 5,
   });
   const unreadReplys = query.data?.docs.filter(
     (message) => message.type === "reply" && message.read === false,
@@ -51,18 +48,14 @@ export default function UnreadReplys({
 }
 
 export function UnreadReplysBadge({
-  user,
+  email,
 }: {
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
+  email: EmailAddress["emailAddress"] | null | undefined;
 }) {
   const params = stringify({
     where: {
       email: {
-        equals: user?.email,
+        equals: email,
       },
     },
   });

@@ -8,11 +8,9 @@ import {
   InitialMessages,
   ReplyMessages,
 } from "./_client";
-import { headers } from "next/headers";
 import { Metadata } from "next";
 import { generateMetadata } from "@/lib/metadata";
-import payloadConfig from "@/payload.config";
-import { getPayload } from "payload";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me/contact",
@@ -20,12 +18,7 @@ export const metadata: Metadata = generateMetadata(
 );
 
 export default async function ContactPage() {
-  const request = await headers();
-  const ip =
-    request.get("x-forwarded-for") || request.get("x-real-ip") || "Unknown IP";
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const { user } = await payload.auth({ headers: request });
+  const user = await currentUser();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -152,7 +145,7 @@ export default async function ContactPage() {
                   </div>
                 </div>
               </Motion>
-              <ContactForm user={user} ip={ip} />
+              <ContactForm email={user?.primaryEmailAddress?.emailAddress} />
             </div>
           </div>
         </section>
@@ -185,7 +178,7 @@ export default async function ContactPage() {
                 ideas and opportunities.
               </Motion>
             </div>
-            <InitialMessages user={user} />
+            <InitialMessages email={user?.primaryEmailAddress?.emailAddress} />
           </div>
         </section>
         <section
@@ -218,7 +211,7 @@ export default async function ContactPage() {
                 feedback, feel free to reach out.
               </Motion>
             </div>
-            <ReplyMessages user={user} />
+            <ReplyMessages email={user?.primaryEmailAddress?.emailAddress} />
           </div>
         </section>
       </div>

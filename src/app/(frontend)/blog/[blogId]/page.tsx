@@ -118,7 +118,7 @@ export default async function TermsPage({
               />
               <Comments
                 repo="sudharshans2009/utterances"
-                issueTerm="blog"
+                issueTerm={`title:${blog.docs[0].slug}`}
                 label="Blog Comment"
               />
             </div>

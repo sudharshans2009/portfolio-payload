@@ -3,19 +3,19 @@
 import payloadConfig from "@/payload.config";
 import { FormSchema, formSchema } from "@/forms/submitEmail";
 import { revalidatePath } from "next/cache";
-import { headers, cookies as nextCookies } from "next/headers";
+import { cookies as nextCookies } from "next/headers";
 import { getPayload } from "payload";
+import { currentUser } from "@clerk/nextjs/server";
 
 export async function submitEmail(formData: FormSchema) {
   try {
-    const request = await headers();
     const config = await payloadConfig;
     const payload = await getPayload({ config });
-    const { user } = await payload.auth({ headers: request });
+    const user = await currentUser();
 
     const parsedBody = formSchema.safeParse(formData);
 
-    if (!user?.email) {
+    if (!user?.primaryEmailAddress?.emailAddress) {
       throw new Error("You must be logged in to send a message.");
     }
 
@@ -25,7 +25,7 @@ export async function submitEmail(formData: FormSchema) {
 
     const { email, name, message_content: message, ip } = parsedBody.data;
 
-    if (user?.email !== email) {
+    if (user?.primaryEmailAddress?.emailAddress !== email) {
       throw new Error("Email does not match the logged-in user.");
     }
 

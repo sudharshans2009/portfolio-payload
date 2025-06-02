@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@9gustin/react-notion-render": "^3.11.4",
+    "@clerk/elements": "^0.23.31",
+    "@clerk/nextjs": "^6.20.2",
+    "@clerk/shared": "^3.9.5",
     "@hookform/resolvers": "^5.0.1",
     "@payloadcms/db-sqlite": "3.33.0",
     "@payloadcms/db-vercel-postgres": "3.33.0",

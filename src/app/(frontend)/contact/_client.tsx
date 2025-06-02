@@ -30,9 +30,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { formSchema, FormSchema } from "@/forms/submitEmail";
 import MessageCard from "@/components/message-card";
 import Link from "next/link";
-import { PaginatedDocs, User } from "payload";
+import { PaginatedDocs } from "payload";
 import { Message } from "@/payload-types";
 import { stringify } from "qs-esm";
+import { EmailAddress } from "@clerk/nextjs/server";
 
 interface Props {
   children?: React.ReactNode;
@@ -72,7 +73,7 @@ export function CopyButton({
       onClick={handleCopy}
       className={cn(
         "group relative h-14 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25",
-        className,
+        className
       )}
       {...props}
     >
@@ -86,23 +87,17 @@ export function CopyButton({
 }
 
 export function ContactForm({
-  ip,
-  user,
+  email,
 }: {
-  ip: string;
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
+  email: EmailAddress["emailAddress"] | null | undefined;
 }) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: user?.email || "",
+      email: email || "",
       message_content: "",
-      ip,
+      ip: "Unknown",
     },
   });
 
@@ -122,9 +117,9 @@ export function ContactForm({
 
       form.reset({
         name: "",
-        email: user?.email || "",
+        email: email || "",
         message_content: "",
-        ip,
+        ip: "Unknown",
       });
     },
     onError: (error) => {
@@ -137,7 +132,7 @@ export function ContactForm({
 
   const onSubmit = useCallback(
     (values: FormSchema) => {
-      if (!user?.email) {
+      if (!email) {
         toast.error("You must be logged in to send a message.", {
           id: "form-submit",
         });
@@ -149,7 +144,7 @@ export function ContactForm({
 
       mutate(values);
     },
-    [mutate, user?.email],
+    [mutate, email]
   );
 
   return (
@@ -246,7 +241,7 @@ export function ContactForm({
           onClick={form.handleSubmit(onSubmit)}
           disabled={isPending}
           className={cn(
-            "group h-14 relative px-8 py-4 bg-gradient-to-r flex items-center justify-center from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25",
+            "group h-14 relative px-8 py-4 bg-gradient-to-r flex items-center justify-center from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25"
           )}
         >
           {!isPending ? "Submit" : <Loader className="animate-spin" />}
@@ -257,25 +252,21 @@ export function ContactForm({
 }
 
 export function InitialMessages({
-  user,
+  email,
 }: {
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
+  email: EmailAddress["emailAddress"] | null | undefined;
 }) {
   const params = stringify({
     where: {
       email: {
-        equals: user?.email,
+        equals: email,
       },
     },
   });
   const query = useQuery<PaginatedDocs<Message>>({
     queryKey: ["messages"],
     queryFn: async () => {
-      if (!user?.email) return {};
+      if (!email) return {};
       const res = await fetch(`/api/messages?${params}`);
       if (!res.ok) throw new Error("Failed to fetch messages");
       return res.json();
@@ -284,7 +275,7 @@ export function InitialMessages({
   });
 
   const messages = query.data?.docs.filter(
-    (message) => message.type === "initial",
+    (message) => message.type === "initial"
   );
 
   return (
@@ -334,25 +325,21 @@ export function InitialMessages({
 }
 
 export function ReplyMessages({
-  user,
+  email,
 }: {
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
+  email: EmailAddress["emailAddress"] | null | undefined;
 }) {
   const params = stringify({
     where: {
       email: {
-        equals: user?.email,
+        equals: email,
       },
     },
   });
   const query = useQuery<PaginatedDocs<Message>>({
     queryKey: ["messages"],
     queryFn: async () => {
-      if (!user?.email) return {};
+      if (!email) return {};
       const res = await fetch(`/api/messages?${params}`);
       if (!res.ok) throw new Error("Failed to fetch messages");
       return res.json();
@@ -361,7 +348,7 @@ export function ReplyMessages({
   });
 
   const messages = query.data?.docs.filter(
-    (message) => message.type === "reply",
+    (message) => message.type === "reply"
   );
 
   return (

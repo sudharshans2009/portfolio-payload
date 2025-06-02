@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
-import { adminsAndUser } from "./access/users";
 import { checkRole } from "./access/check-role";
+import { anyone } from "./access/anyone";
+import { admins } from "./access/admins";
 
 export const Messages: CollectionConfig = {
   slug: "messages",
@@ -13,10 +14,10 @@ export const Messages: CollectionConfig = {
   },
   access: {
     admin: ({ req: { user } }) => checkRole(["admin"], user),
-    create: adminsAndUser,
-    delete: adminsAndUser,
-    read: adminsAndUser,
-    update: adminsAndUser,
+    create: anyone,
+    delete: admins,
+    read: anyone,
+    update: admins,
   },
   fields: [
     {

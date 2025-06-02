@@ -15,6 +15,8 @@ import { getPayload } from "payload";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/app/styles.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,7 +26,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me",
+  "SS.me"
 );
 
 export const viewport: Viewport = {
@@ -41,35 +43,34 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const request = await headers();
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const { user } = await payload.auth({ headers: request });
+  const user = await currentUser();
 
   return (
-    <html lang="en" className="scheme-dark dark" suppressHydrationWarning>
-      <body
-        className={cn("antialiased", poppins.className)}
-        suppressHydrationWarning
-      >
-        <QueryProvider>
-          <ThemeProvider>
-            <Navbar user={user} />
-            {children}
-            <Footer />
-            <UnreadReplys user={user} />
-          </ThemeProvider>
-        </QueryProvider>
-        <Toaster position="bottom-right" richColors />
-        <Analytics />
-        <SpeedInsights />
-        {typeof window !== "undefined" && (
-          <>
-            <Script src="./scripts/script.js" />
-            <Script src="./scripts/sw.js" />
-          </>
-        )}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="scheme-dark dark" suppressHydrationWarning>
+        <body
+          className={cn("antialiased", poppins.className)}
+          suppressHydrationWarning
+        >
+          <QueryProvider>
+            <ThemeProvider>
+              <Navbar />
+              {children}
+              <Footer />
+              <UnreadReplys email={user?.primaryEmailAddress?.emailAddress} />
+            </ThemeProvider>
+          </QueryProvider>
+          <Toaster position="bottom-right" richColors />
+          <Analytics />
+          <SpeedInsights />
+          {typeof window !== "undefined" && (
+            <>
+              <Script src="./scripts/script.js" />
+              <Script src="./scripts/sw.js" />
+            </>
+          )}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

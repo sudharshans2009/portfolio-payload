@@ -10,6 +10,13 @@ import { usePathname } from "next/navigation";
 import { useHydrate } from "@/hooks/use-hydrate";
 import { cn } from "@/lib/utils";
 import { User } from "payload";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 function NavItem({
   link,
@@ -53,15 +60,7 @@ function NavItem({
   );
 }
 
-export default function Navbar({
-  user,
-}: {
-  user:
-    | (User & {
-        collection: "users";
-      })
-    | null;
-}) {
+export default function Navbar() {
   const { menu, props, theme, nav } = useNavbar();
   const pathname = useHydrate<string>(usePathname, ["/"], ({ fn }) => [fn]);
 
@@ -93,18 +92,17 @@ export default function Navbar({
             </Link>
             <div className="flex items-center gap-4">
               <Motion
-                element={Link}
-                href="/account"
+                element="div"
                 className="p-2 flex gap-2 rounded-full bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <p>
-                  {user?.email
-                    ? `${user?.firstName} ${user?.lastName}`
-                    : "Login"}
-                </p>
-                <UserRoundCog />
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
               </Motion>
               <Motion
                 element="button"
@@ -208,7 +206,7 @@ export default function Navbar({
                         <div
                           className={cn(
                             "absolute left-2 transition-all duration-300",
-                            nav.get === "site" ? "top-0" : "-top-full",
+                            nav.get === "site" ? "top-0" : "-top-full"
                           )}
                         >
                           <p>Site</p>

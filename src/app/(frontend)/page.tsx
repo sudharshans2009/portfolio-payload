@@ -13,6 +13,7 @@ import { generateMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 import { UnreadReplysBadge } from "@/components/unread-replys";
 import { headers } from "next/headers";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
@@ -27,8 +28,7 @@ export default async function HomePage() {
     sort: "-createdAt",
     limit: 6,
   });
-  const request = await headers();
-  const { user } = await payload.auth({ headers: request });
+  const user = await currentUser();
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
@@ -99,7 +99,7 @@ export default async function HomePage() {
                         Contact Me
                         <Phone className="w-4 h-4" />
                       </span>
-                      <UnreadReplysBadge user={user} />
+                      <UnreadReplysBadge email={user?.primaryEmailAddress?.emailAddress} />
                     </Motion>
                   </NextLink>
                 </div>
