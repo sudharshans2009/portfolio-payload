@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { formSchema, FormSchema } from "@/forms/submitEmail";
 import MessageCard from "@/components/message-card";
 import Link from "next/link";
@@ -100,6 +100,7 @@ export function ContactForm({
       ip: "Unknown",
     },
   });
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationFn: submitEmail,
@@ -113,6 +114,10 @@ export function ContactForm({
 
       toast.success("Successfully sent a message!", {
         id: "form-submit",
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["messages"],
       });
 
       form.reset({

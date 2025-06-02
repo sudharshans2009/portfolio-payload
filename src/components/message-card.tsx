@@ -13,7 +13,7 @@ export default function MessageCard({
   message: Message;
   index: number;
 }) {
-  const queryCient = useQueryClient();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
       toast.loading("Marking message as read...", {
@@ -38,7 +38,7 @@ export default function MessageCard({
         id: "mark-as-read",
       });
 
-      queryCient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ["messages"],
       });
     },
