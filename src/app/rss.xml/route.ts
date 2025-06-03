@@ -12,7 +12,7 @@ function escapeXml(str: string) {
     .replace(/'/g, "&apos;");
 }
 
-export const revalidate = 60 * 60 * 24; // Rebuild RSS feed every 24 hours
+export const revalidate = 86400; // Rebuild RSS feed every 24 hours
 
 export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sudharshans.me";
