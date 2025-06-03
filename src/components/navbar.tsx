@@ -111,6 +111,7 @@ export default function Navbar() {
                 onClick={() =>
                   theme.set(theme.get === "dark" ? "light" : "dark")
                 }
+                aria-label="Toggle theme"
                 className="p-2 rounded-full bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
               >
                 {theme.get === "dark" ? (
@@ -137,6 +138,7 @@ export default function Navbar() {
                 element="button"
                 whileTap={{ scale: 0.9 }}
                 onClick={() => menu.set((prev) => !prev)}
+                aria-label="Toggle menu"
                 className="p-2 transition-colors cursor-pointer"
               >
                 <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
@@ -275,6 +277,7 @@ export default function Navbar() {
                         href={social.url}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label={social.name}
                         className="p-2 rounded-lg bg-purple-800/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
                       >
                         {social.icon}

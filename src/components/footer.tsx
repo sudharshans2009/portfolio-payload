@@ -51,6 +51,7 @@ export default async function Footer() {
                   href={social.url}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label={social.name}
                   className="p-2 rounded-lg bg-purple-800/10 text-purple-500 hover:bg-purple-500/20 dark:hover:bg-purple-500/30 transition-colors"
                 >
                   {social.icon}
