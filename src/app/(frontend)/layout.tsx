@@ -18,11 +18,11 @@ import "@/app/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+// const poppins = Poppins({
+//   subsets: ["latin"],
+//   style: ["normal", "italic"],
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+// });
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
@@ -49,7 +49,7 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en" className="scheme-dark dark" suppressHydrationWarning>
         <body
-          className={cn("antialiased", poppins.className)}
+          className={cn("antialiased", )}
           suppressHydrationWarning
         >
           <QueryProvider>

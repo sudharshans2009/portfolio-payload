@@ -5,26 +5,34 @@ import Image from "next/image";
 import { getPayload } from "payload";
 import React from "react";
 import Comments from "@/components/comments";
+import { cache } from "@/lib/cache";
 
-export default async function TermsPage({
+const blogCache = cache(
+  async () => {
+    const config = await payloadConfig;
+    const payload = await getPayload({ config });
+    const blog = await payload.find({
+      collection: "blog",
+      sort: "createdAt",
+    });
+    return blog.docs;
+  },
+  ["blog"],
+  {
+    revalidate: 60 * 60 * 24,
+  }
+);
+
+export default async function PostPage({
   params,
 }: {
   params: Promise<{ blogId: string }>;
 }) {
   const { blogId } = await params;
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const blog = await payload.find({
-    collection: "blog",
-    where: {
-      slug: {
-        equals: blogId.replace("/", ""),
-      },
-    },
-    limit: 1,
-  });
+  const blog = await blogCache();
+  const post = blog.find((doc) => doc.slug === blogId.replace("/", ""));
 
-  if (!blog.docs[0]) {
+  if (!blog[0]) {
     return (
       <main className="relative flex flex-col items-center z-10">
         <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 mx-auto">
@@ -64,7 +72,7 @@ export default async function TermsPage({
             <div className="flex flex-col items-center lg:items-start">
               <div className="mb-8">
                 <div>
-                  {blog.docs[0].categories?.map((category) => (
+                  {blog[0].categories?.map((category) => (
                     <span
                       key={category.tag}
                       className="inline-block px-3 py-1 text-base font-bold bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-200 rounded-full mr-2 mb-4"
@@ -74,13 +82,13 @@ export default async function TermsPage({
                   ))}
                 </div>
                 <h1 className="text-4xl max-w-5xl font-bold text-gray-900 dark:text-white mb-4">
-                  {blog.docs[0].title}
+                  {blog[0].title}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  {blog.docs[0].description}
+                  {blog[0].description}
                 </p>
                 <p className="text-gray-500 dark:text-gray-400 mb-4">
-                  {blog.docs[0].authors?.map((author) => {
+                  {blog[0].authors?.map((author) => {
                     if (typeof author === "number") return null;
 
                     return (
@@ -101,7 +109,7 @@ export default async function TermsPage({
                   })}
                 </p>
                 <div>
-                  {blog.docs[0].tags?.map((tag) => (
+                  {blog[0].tags?.map((tag) => (
                     <span
                       key={tag.tag}
                       className="inline-block px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-lg mr-2 mb-2"
@@ -113,12 +121,12 @@ export default async function TermsPage({
               </div>
               <Separator className="w-full" />
               <RichText
-                data={blog.docs[0].content}
+                data={blog[0].content}
                 className="text-gray-600 dark:text-gray-300 mb-8"
               />
               <Comments
                 repo="sudharshans2009/utterances"
-                issueTerm={`title:${blog.docs[0].slug}`}
+                issueTerm={`title:${blog[0].slug}`}
                 label="Blog Comment"
               />
             </div>

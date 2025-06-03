@@ -1,5 +1,3 @@
-"use client";
-
 import { siteNavLinks, socialLinks } from "@/constants";
 import { MapPin, Mail } from "lucide-react";
 import * as Lucide from "lucide-react";
@@ -9,21 +7,28 @@ import { useQuery } from "@tanstack/react-query";
 import { PaginatedDocs } from "payload";
 import { Page } from "@/payload-types";
 import { stringify } from "qs-esm";
+import payloadConfig from "@/payload.config";
+import { getPayload } from "payload";
+import { cache } from "@/lib/cache";
 
-export default function Footer() {
-  const params = stringify({
-    sort: "createdAt",
-  });
+const termsCache = cache(
+  async () => {
+    const config = await payloadConfig;
+    const payload = await getPayload({ config });
+    const terms = await payload.find({
+      collection: "page",
+      sort: "createdAt"
+    });
+    return terms.docs;
+  },
+  ["pages"],
+  {
+    revalidate: 60 * 60 * 24,
+  }
+);
 
-  const query = useQuery<PaginatedDocs<Page>>({
-    queryKey: ["pages"],
-    queryFn: async () => {
-      const res = await fetch(`/api/page?${params}`);
-      if (!res.ok) throw new Error("Failed to fetch unread messages");
-      return res.json();
-    },
-  });
-
+export default async function Footer() {
+  const terms = await termsCache();
   return (
     <footer className="relative bg-[#101010] dark:bg-black text-white">
       <div className="container max-w-7xl mx-auto px-4 relative z-10">
@@ -76,7 +81,7 @@ export default function Footer() {
               Information
             </h3>
             <ul className="space-y-4">
-              {query.data?.docs.map((link) => (
+              {terms.map((link) => (
                 <li key={link.title}>
                   <Link
                     href={`/terms/${link.slug}`}

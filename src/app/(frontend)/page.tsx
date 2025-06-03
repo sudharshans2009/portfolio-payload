@@ -12,22 +12,33 @@ import { getPayload } from "payload";
 import { generateMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 import { UnreadReplysBadge } from "@/components/unread-replys";
-import { headers } from "next/headers";
 import { currentUser } from "@clerk/nextjs/server";
+import { cache } from "@/lib/cache";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me - Home",
+  "SS.me - Home"
+);
+
+const projectsCache = cache(
+  async () => {
+    const config = await payloadConfig;
+    const payload = await getPayload({ config });
+    const projects = await payload.find({
+      collection: "projects",
+      limit: 6,
+      sort: "-createdAt",
+    });
+    return projects.docs;
+  },
+  ["projects", "/"],
+  {
+    revalidate: 60 * 60 * 24,
+  }
 );
 
 export default async function HomePage() {
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const projects = await payload.find({
-    collection: "projects",
-    sort: "-createdAt",
-    limit: 6,
-  });
+  const projects = await projectsCache();
   const user = await currentUser();
 
   return (
@@ -99,7 +110,9 @@ export default async function HomePage() {
                         Contact Me
                         <Phone className="w-4 h-4" />
                       </span>
-                      <UnreadReplysBadge email={user?.primaryEmailAddress?.emailAddress} />
+                      <UnreadReplysBadge
+                        email={user?.primaryEmailAddress?.emailAddress}
+                      />
                     </Motion>
                   </NextLink>
                 </div>
@@ -303,7 +316,7 @@ export default async function HomePage() {
               </Motion>
             </div>
             <div className="grid gap-8 lg:grid-cols-2">
-              {projects.docs.map((project, index) => (
+              {projects.map((project, index) => (
                 <ProjectCard
                   project={project}
                   index={index}

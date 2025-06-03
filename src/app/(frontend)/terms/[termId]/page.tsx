@@ -4,6 +4,23 @@ import { getPayload } from "payload";
 import React from "react";
 import { Metadata } from "next";
 import { generateMetadata as generateMetadataLib } from "@/lib/metadata";
+import { cache } from "@/lib/cache";
+
+const termsCache = cache(
+  async () => {
+    const config = await payloadConfig;
+    const payload = await getPayload({ config });
+    const terms = await payload.find({
+      collection: "page",
+      sort: "createdAt"
+    });
+    return terms.docs;
+  },
+  ["pages"],
+  {
+    revalidate: 60 * 60 * 24,
+  }
+);
 
 export async function generateMetadata({
   params,
@@ -13,14 +30,9 @@ export async function generateMetadata({
   const { termId: rawId } = await params;
   const termId = rawId.replace("/", "");
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sudharshans.me";
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const term = await payload.find({
-    collection: "page",
-    where: { slug: { equals: termId } },
-    limit: 1,
-  });
-  const page: any = term.docs[0];
+  const terms = await termsCache();
+  const term = terms.find((doc) => doc.slug === termId.replace("/", ""));
+  const page: any = term;
   const title = page.metaTitle || page.title || "Page";
   const description = page.metaDescription;
   const images = page.metaImage
@@ -46,19 +58,10 @@ export default async function TermsPage({
   params: Promise<{ termId: string }>;
 }) {
   const { termId } = await params;
-  const config = await payloadConfig;
-  const payload = await getPayload({ config });
-  const term = await payload.find({
-    collection: "page",
-    where: {
-      slug: {
-        equals: termId.replace("/", ""),
-      },
-    },
-    limit: 1,
-  });
+  const terms = await termsCache();
+  const term = terms.find((doc) => doc.slug === termId.replace("/", ""));
 
-  if (!term.docs[0]) {
+  if (!term) {
     return (
       <main className="relative flex flex-col items-center z-10">
         <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 mx-auto">
@@ -97,7 +100,7 @@ export default async function TermsPage({
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col items-center lg:items-start">
               <RichText
-                data={term.docs[0].content}
+                data={term.content}
                 className="text-gray-600 dark:text-gray-300"
               />
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { SignIn, UserProfile } from "@clerk/nextjs";
+import { UserProfile } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
