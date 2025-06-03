@@ -54,14 +54,14 @@ export function CopyButton({
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    copyToClipboard(clipboardText).then(() => {
-      setIsCopied(true);
-      wait(2000).then(() => {
-        toast.info("Copied to clipboard", {
-          description: `Copied ${clipboardText} to clipboard`,
-          duration: 2000,
-        });
-      });
+    copyToClipboard(clipboardText);
+    setIsCopied(true);
+    toast.info("Copied to clipboard", {
+      description: `Copied ${clipboardText} to clipboard`,
+      duration: 2000,
+    });
+    wait(2000).then(() => {
+      setIsCopied(false);
     });
   };
 
