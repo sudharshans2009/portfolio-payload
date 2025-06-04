@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /projects
+Allow: /blog
+Allow: /blog/*
+Allow: /terms/tos
+Allow: /terms/privacy
+Allow: /terms/eula
+Allow: /terms/cookies
+Disallow: /contact
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /user/*

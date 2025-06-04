@@ -6,6 +6,7 @@ import { getPayload } from "payload";
 import React from "react";
 import Comments from "@/components/comments";
 import { cache } from "@/lib/cache";
+import { formatImage } from "@/lib/utils";
 
 const blogCache = cache(
   async () => {
@@ -68,7 +69,7 @@ export default async function PostPage({
         >
           <div className="absolute top-1/3 left-1/4 w-10 h-10 md:w-96 md:h-96 bg-purple-600/5 dark:bg-purple-600/10 rounded-full filter blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-10 h-10 md:w-80 md:h-80 bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full filter blur-3xl animate-pulse delay-700" />
-          <div className="w-full max-w-7xl mx-auto relative z-10">
+          <div className="w-full max-w-4xl mx-auto relative z-10">
             <div className="flex flex-col items-center lg:items-start">
               <div className="mb-8">
                 <div>
@@ -80,6 +81,16 @@ export default async function PostPage({
                       {category.tag}
                     </span>
                   ))}
+                </div>
+                <div className="group relative flex justify-center items-center w-full max-w-4xl mb-6">
+                  <Image
+                    src={formatImage(blog[0].image)}
+                    alt={blog[0].title}
+                    loading="lazy"
+                    width={922}
+                    height={512}
+                    className="transition-transform object-cover w-full rounded-2xl aspect-[16/6] duration-700 group-hover:scale-105"
+                  />
                 </div>
                 <h1 className="text-4xl max-w-5xl font-bold text-gray-900 dark:text-white mb-4">
                   {blog[0].title}
