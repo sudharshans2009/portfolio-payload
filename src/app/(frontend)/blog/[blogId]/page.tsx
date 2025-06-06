@@ -7,6 +7,7 @@ import React from "react";
 import Comments from "@/components/comments";
 import { cache } from "@/lib/cache";
 import { formatImage } from "@/lib/utils";
+import BlogCard from "@/components/blog-card";
 
 const blogCache = cache(
   async () => {
@@ -20,7 +21,7 @@ const blogCache = cache(
   },
   ["blog"],
   {
-    revalidate: 60 * 60 * 24,
+    revalidate: 60 * 60 * 24 * 2,
   }
 );
 
@@ -140,6 +141,21 @@ export default async function PostPage({
                 issueTerm={`title:${blog[0].slug}`}
                 label="Blog Comment"
               />
+            </div>
+            <div className="mt-10 mb-15">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                  More Blogs
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400 mb-8">
+                  Explore more articles from our blog.
+                </p>
+              </div>
+              <div className="grid gap-8 auto-rows-fr lg:grid-cols-2">
+                {blog.map((blog, index) => (
+                  <BlogCard blog={blog} index={index} key={blog.title} />
+                ))}
+              </div>
             </div>
           </div>
         </section>
