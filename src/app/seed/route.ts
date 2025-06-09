@@ -17,7 +17,6 @@ export async function GET() {
       collection: "media",
       limit: 1,
     });
-    // Check and seed media
     if (existingMedia.totalDocs === 0) {
       console.log("Seeding media...");
       for (const m of media) {
@@ -28,7 +27,6 @@ export async function GET() {
       }
     }
 
-    // Check and seed projects
     const existingProjects = await payload.find({
       collection: "projects",
       limit: 1,
@@ -40,7 +38,6 @@ export async function GET() {
       }
     }
 
-    // Check and seed FAQs
     const existingFaqs = await payload.find({ collection: "faqs", limit: 1 });
     if (existingFaqs.totalDocs === 0) {
       console.log("Seeding FAQs...");
@@ -52,7 +49,6 @@ export async function GET() {
       }
     }
 
-    // Check and seed reviews
     const existingReviews = await payload.find({
       collection: "reviews",
       limit: 1,
@@ -68,7 +64,6 @@ export async function GET() {
       collection: "blog",
       limit: 1,
     });
-    // Check and seed blog posts
     if (existingBlog.totalDocs === 0) {
       console.log("Seeding blog posts...");
       for (const post of blog) {
@@ -78,7 +73,6 @@ export async function GET() {
         });
       }
     }
-    // Check and seed page
     const existingPage = await payload.find({
       collection: "page",
       limit: 1,
@@ -92,7 +86,6 @@ export async function GET() {
         });
       }
     }
-    // Check and seed rate limits
 
     console.log("Database seeding completed.");
     return NextResponse.json({ message: "Database seeding completed." });

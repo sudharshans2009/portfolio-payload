@@ -11,6 +11,14 @@ import {
 import { Metadata } from "next";
 import { generateMetadata } from "@/lib/metadata";
 import { currentUser } from "@clerk/nextjs/server";
+import {
+  BackgroundHigh,
+  BackgroundLow,
+  HeroBackground,
+} from "@/components/background";
+import { Projects } from "@/schemas/Projects";
+import { ProjectsHero } from "@/components/project-card";
+import { FullstackDev, Intro } from "@/components/hero";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me/contact",
@@ -27,8 +35,7 @@ export default async function ContactPage() {
           className="relative w-full pt-28 flex flex-col item-center justify-center"
           id="home"
         >
-          <div className="absolute top-1/3 left-1/4 w-10 h-10 md:w-96 md:h-96 bg-purple-600/5 dark:bg-purple-600/10 rounded-full filter blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-10 h-10 md:w-80 md:h-80 bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full filter blur-3xl animate-pulse delay-700" />
+          <HeroBackground />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col items-center lg:items-start">
               <Motion
@@ -38,31 +45,8 @@ export default async function ContactPage() {
                 transition={{ duration: 0.7 }}
                 className="max-w-4xl text-center lg:text-left"
               >
-                <Motion
-                  element="span"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="inline-flex items-center gap-4 px-4 py-1.5 bg-purple-500/5 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium mb-6"
-                >
-                  <span>
-                    <Sparkles className="w-4 h-4" />
-                  </span>{" "}
-                  Fullstack Developer
-                </Motion>
-                <div className="space-y-4">
-                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-800 dark:text-white leading-tight">
-                    Hi, I&apos;m{" "}
-                    <span className="text-transparent text-nowrap bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
-                      Sudharshan S
-                    </span>
-                  </h1>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 text-lg lg:text-xl mt-8 mb-10 leading-relaxed max-w-2xl">
-                  I am a fullstack developer with a passion for creating
-                  beautiful and functional web applications. I am always looking
-                  for new challenges and opportunities to learn and grow.
-                </p>
+                <FullstackDev />
+                <Intro />
                 <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
                   <CopyButton
                     icon={<Clipboard className="w-4 h-4" />}
@@ -85,36 +69,7 @@ export default async function ContactPage() {
                     ))}
                   </div>
                 </div>
-                <Motion
-                  element="div"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
-                >
-                  <div className="flex -space-x-3">
-                    {stack.map((item) => (
-                      <div
-                        key={item.name}
-                        className="w-12 h-12 rounded-full border-2 border-purple-500/20 dark:border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/30"
-                      >
-                        <Image
-                          src={item.image}
-                          className="rounded-full"
-                          width={48}
-                          height={48}
-                          alt={item.name}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-gray-500 dark:text-gray-400">
-                    <span className="text-purple-600 dark:text-purple-400 font-semibold">
-                      50+
-                    </span>{" "}
-                    Projects Completed
-                  </div>
-                </Motion>
+                <ProjectsHero />
               </Motion>
             </div>
           </div>
@@ -123,7 +78,7 @@ export default async function ContactPage() {
           className="w-full pt-24 flex flex-col item-center justify-center"
           id="contact"
         >
-          <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+          <BackgroundLow />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="grid grid-rows-1 lg:grid-cols-3 items-start gap-16">
               <Motion
@@ -153,7 +108,7 @@ export default async function ContactPage() {
           className="w-full pt-24 flex flex-col item-center justify-center"
           id="messages"
         >
-          <div className="absolute top-0 right-0 w-full h-96 bg-gradient-to-b from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+          <BackgroundHigh />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center mb-20">
               <Motion
@@ -185,8 +140,7 @@ export default async function ContactPage() {
           className="w-full pt-24 pb-12 flex flex-col item-center justify-center"
           id="replys"
         >
-          <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
-
+          <BackgroundLow />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <Motion

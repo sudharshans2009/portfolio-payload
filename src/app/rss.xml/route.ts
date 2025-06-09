@@ -36,7 +36,7 @@ export async function GET() {
         <pubDate>${new Date(post.publishedDate || "").toUTCString()}</pubDate>
         <description>${escapeXml(post.description || "")}</description>
       </item>
-    `
+    `,
     )
     .join("");
 

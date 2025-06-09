@@ -7,7 +7,7 @@ export interface MetadataOverrides {
 export function generateMetadata(
   pageUrl: string,
   pageTitle: string,
-  overrides: MetadataOverrides = {}
+  overrides: MetadataOverrides = {},
 ): Metadata {
   const defaultDescription = "Providing the best project experience";
   const description = overrides.description || defaultDescription;
@@ -41,7 +41,7 @@ export function generateMetadata(
       title: pageTitle,
       description,
       images: (Array.isArray(ogImages) ? ogImages : [ogImages]).map((img) =>
-        typeof img === "string" ? img : (img as any).url
+        typeof img === "string" ? img : (img as any).url,
       ),
       creator: "@sudharshans2009",
     },

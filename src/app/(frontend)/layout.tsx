@@ -23,7 +23,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me"
+  "SS.me",
 );
 
 export const viewport: Viewport = {
@@ -45,10 +45,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="scheme-dark dark" suppressHydrationWarning>
-        <body
-          className={cn("antialiased", poppins.className)}
-          suppressHydrationWarning
-        >
+        <body className={cn("antialiased", poppins.className)} suppressHydrationWarning>
           <QueryProvider>
             <ThemeProvider>
               <Navbar />

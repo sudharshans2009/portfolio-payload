@@ -5,6 +5,7 @@ import Motion from "./motion";
 import { ExternalLink, Github } from "lucide-react";
 import { formatImage } from "@/lib/utils";
 import { Project } from "@/payload-types";
+import { stack } from "@/constants";
 
 export default function ProjectCard({
   project,
@@ -72,6 +73,41 @@ export default function ProjectCard({
             View Code
           </Motion>
         </div>
+      </div>
+    </Motion>
+  );
+}
+
+export function ProjectsHero() {
+  return (
+    <Motion
+      element="div"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
+    >
+      <div className="flex -space-x-3">
+        {stack.map((item) => (
+          <div
+            key={item.name}
+            className="w-12 h-12 rounded-full border-2 border-purple-500/20 dark:border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/30"
+          >
+            <Image
+              src={item.image}
+              className="rounded-full"
+              width={48}
+              height={48}
+              alt={item.name}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="text-gray-500 dark:text-gray-400">
+        <span className="text-purple-600 dark:text-purple-400 font-semibold">
+          50+
+        </span>{" "}
+        Projects Completed
       </div>
     </Motion>
   );

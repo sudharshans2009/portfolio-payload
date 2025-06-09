@@ -208,7 +208,7 @@ export default function Navbar() {
                         <div
                           className={cn(
                             "absolute left-2 transition-all duration-300",
-                            nav.get === "site" ? "top-0" : "-top-full"
+                            nav.get === "site" ? "top-0" : "-top-full",
                           )}
                         >
                           <p>Site</p>

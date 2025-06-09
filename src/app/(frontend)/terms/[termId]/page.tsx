@@ -5,6 +5,7 @@ import React from "react";
 import { Metadata } from "next";
 import { generateMetadata as generateMetadataLib } from "@/lib/metadata";
 import { cache } from "@/lib/cache";
+import { BackgroundAll } from "@/components/background";
 
 const termsCache = cache(
   async () => {
@@ -12,14 +13,14 @@ const termsCache = cache(
     const payload = await getPayload({ config });
     const terms = await payload.find({
       collection: "page",
-      sort: "createdAt"
+      sort: "createdAt",
     });
     return terms.docs;
   },
   ["pages"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 export async function generateMetadata({
@@ -69,11 +70,7 @@ export default async function TermsPage({
             className="relative w-full pt-28 flex flex-col item-center justify-center"
             id="home"
           >
-            <div className="absolute top-1/3 left-1/4 w-10 h-10 md:w-96 md:h-96 bg-purple-600/5 dark:bg-purple-600/10 rounded-full filter blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-10 h-10 md:w-80 md:h-80 bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full filter blur-3xl animate-pulse delay-700" />
-            <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
-            <div className="absolute top-0 right-0 w-full h-96 bg-gradient-to-b from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
-            <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+            <BackgroundAll />
             <div className="w-full max-w-7xl mx-auto relative z-10">
               <div className="flex flex-col items-center lg:items-start">
                 Not Found
@@ -87,16 +84,12 @@ export default async function TermsPage({
 
   return (
     <main className="relative flex min-h-screen flex-col items-center z-10">
-      <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
-      <div className="absolute top-0 right-0 w-full h-96 bg-gradient-to-b from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
-      <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+      <BackgroundAll />
       <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 mx-auto">
         <section
           className="relative w-full pt-28 flex flex-col item-center justify-center"
           id="home"
         >
-          <div className="absolute top-1/3 left-1/4 w-10 h-10 md:w-96 md:h-96 bg-purple-600/5 dark:bg-purple-600/10 rounded-full filter blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-10 h-10 md:w-80 md:h-80 bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full filter blur-3xl animate-pulse delay-700" />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col items-center lg:items-start">
               <RichText

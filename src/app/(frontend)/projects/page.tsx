@@ -16,14 +16,14 @@ const projectsCache = cache(
     const payload = await getPayload({ config });
     const projects = await payload.find({
       collection: "projects",
-      sort: "createdAt"
+      sort: "createdAt",
     });
     return projects.docs;
   },
   ["projects"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 const reviewsCache = cache(
@@ -32,14 +32,14 @@ const reviewsCache = cache(
     const payload = await getPayload({ config });
     const reviews = await payload.find({
       collection: "reviews",
-      sort: "createdAt"
+      sort: "createdAt",
     });
     return reviews.docs;
   },
   ["reviews"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 const faqsCache = cache(
@@ -48,26 +48,22 @@ const faqsCache = cache(
     const payload = await getPayload({ config });
     const faqs = await payload.find({
       collection: "faqs",
-      sort: "createdAt"
+      sort: "createdAt",
     });
     return faqs.docs;
   },
   ["faqs"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 export default async function ProjectsPage() {
   const projects = await projectsCache();
-  const reviews = await reviewsCache()
+  const reviews = await reviewsCache();
   const faqs = await faqsCache();
 
   return (
-    <ProjectsClientPage
-      projects={projects}
-      reviews={reviews}
-      faqs={faqs}
-    />
+    <ProjectsClientPage projects={projects} reviews={reviews} faqs={faqs} />
   );
 }

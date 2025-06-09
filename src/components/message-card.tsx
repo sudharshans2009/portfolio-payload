@@ -93,10 +93,8 @@ export default function MessageCard({
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
           {message.name}
         </h1>
-        <h1 className="text-2xl">{message.email}</h1>
       </div>
       <div>
-        <div className="text-xl text-gray-600 dark:text-gray-300">Message:</div>
         <p className="text-xl text-gray-600 dark:text-gray-300">
           {message.message}
         </p>

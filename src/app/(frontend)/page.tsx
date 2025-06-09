@@ -2,11 +2,11 @@ import React from "react";
 import Category from "@/components/category";
 import CountUp from "@/components/countup";
 import Motion from "@/components/motion";
-import ProjectCard from "@/components/project-card";
-import { skillCategories, skills, stack, stats } from "@/constants";
-import { Link, Phone, Sparkles } from "lucide-react";
+import ProjectCard, { ProjectsHero } from "@/components/project-card";
+import { skillCategories, skills, stats } from "@/constants";
+import { LinkIcon, Phone } from "lucide-react";
 import Image from "next/image";
-import NextLink from "next/link";
+import Link from "next/link";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import { generateMetadata } from "@/lib/metadata";
@@ -14,10 +14,17 @@ import { Metadata } from "next";
 import { UnreadReplysBadge } from "@/components/unread-replys";
 import { currentUser } from "@clerk/nextjs/server";
 import { cache } from "@/lib/cache";
+import {
+  BackgroundHigh,
+  BackgroundLow,
+  HeroBackground,
+} from "@/components/background";
+import { FullstackDev, Intro } from "@/components/hero";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = generateMetadata(
   "https://sudharshans.me",
-  "SS.me - Home"
+  "SS.me - Home",
 );
 
 const projectsCache = cache(
@@ -34,7 +41,7 @@ const projectsCache = cache(
   ["projects", "/"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 export default async function HomePage() {
@@ -48,8 +55,7 @@ export default async function HomePage() {
           className="relative w-full pt-28 flex flex-col item-center justify-center"
           id="home"
         >
-          <div className="absolute top-1/3 left-1/4 w-10 h-10 md:w-96 md:h-96 bg-purple-600/5 dark:bg-purple-600/10 rounded-full filter blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-10 h-10 md:w-80 md:h-80 bg-indigo-600/5 dark:bg-indigo-600/10 rounded-full filter blur-3xl animate-pulse delay-700" />
+          <HeroBackground />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col items-center lg:items-start">
               <Motion
@@ -59,52 +65,37 @@ export default async function HomePage() {
                 transition={{ duration: 0.7 }}
                 className="max-w-4xl text-center lg:text-left"
               >
-                <Motion
-                  element="span"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="inline-flex items-center gap-4 px-4 py-1.5 bg-purple-500/5 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium mb-6"
-                >
-                  <span>
-                    <Sparkles className="w-4 h-4" />
-                  </span>{" "}
-                  Fullstack Developer
-                </Motion>
-                <div className="space-y-4">
-                  <h1 className="text-5xl lg:text-7xl font-bold text-gray-800 dark:text-white leading-tight">
-                    Hi, I&apos;m{" "}
-                    <span className="text-transparent text-nowrap bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
-                      Sudharshan S
-                    </span>
-                  </h1>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 text-lg lg:text-xl mt-8 mb-10 leading-relaxed max-w-2xl">
-                  I am a fullstack developer with a passion for creating
-                  beautiful and functional web applications. I am always looking
-                  for new challenges and opportunities to learn and grow.
-                </p>
+                <FullstackDev />
+                <Intro />
                 <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-                  <NextLink href="/projects" className="h-14">
+                  <Link href="/projects" className="h-14">
                     <Motion
                       element="button"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="group w-full h-14 relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25"
+                      className={buttonVariants({
+                        variant: "primary",
+                        size: "base",
+                        width: "full",
+                      })}
                     >
                       <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                       <span className="relative flex items-center justify-center gap-2">
                         View Projects
-                        <Link className="w-4 h-4" />
+                        <LinkIcon className="w-4 h-4" />
                       </span>
                     </Motion>
-                  </NextLink>
-                  <NextLink href="/contact" className="h-14">
+                  </Link>
+                  <Link href="/contact" className="h-14">
                     <Motion
                       element="button"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="group relative w-full h-14 px-8 py-4 bg-transparent border border-purple-500/20 dark:border-purple-500/30 hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl transition-all duration-300 hover:bg-purple-500/5 dark:hover:bg-purple-500/10"
+                      className={buttonVariants({
+                        variant: "secondary",
+                        size: "base",
+                        width: "full",
+                      })}
                     >
                       <span className="flex items-center justify-center gap-2">
                         Contact Me
@@ -114,38 +105,9 @@ export default async function HomePage() {
                         email={user?.primaryEmailAddress?.emailAddress}
                       />
                     </Motion>
-                  </NextLink>
+                  </Link>
                 </div>
-                <Motion
-                  element="div"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-12 flex items-center gap-8 justify-center lg:justify-start"
-                >
-                  <div className="flex -space-x-3">
-                    {stack.map((item) => (
-                      <div
-                        key={item.name}
-                        className="w-12 h-12 rounded-full border-2 border-purple-500/20 dark:border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/30"
-                      >
-                        <Image
-                          src={item.image}
-                          className="rounded-full"
-                          width={48}
-                          height={48}
-                          alt={item.name}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-gray-500 dark:text-gray-400">
-                    <span className="text-purple-600 dark:text-purple-400 font-semibold">
-                      50+
-                    </span>{" "}
-                    Projects Completed
-                  </div>
-                </Motion>
+                <ProjectsHero />
               </Motion>
             </div>
           </div>
@@ -154,7 +116,7 @@ export default async function HomePage() {
           className="w-full pt-24 flex flex-col item-center justify-center"
           id="about"
         >
-          <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+          <BackgroundLow />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="grid grid-rows-1 lg:grid-cols-3 items-start gap-16">
               <Motion
@@ -253,7 +215,7 @@ export default async function HomePage() {
           className="w-full pt-24 flex flex-col item-center justify-center"
           id="skills"
         >
-          <div className="absolute top-0 right-0 w-full h-96 bg-gradient-to-b from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+          <BackgroundHigh />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center mb-20">
               <Motion
@@ -292,7 +254,7 @@ export default async function HomePage() {
           className="w-full pt-24 pb-12 flex flex-col item-center justify-center"
           id="projects"
         >
-          <div className="absolute bottom-0 right-0 w-full h-96 bg-gradient-to-t from-purple-100/20 dark:from-purple-900/20 via-transparent to-transparent" />
+          <BackgroundLow />
           <div className="w-full max-w-7xl mx-auto relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-20">
               <Motion

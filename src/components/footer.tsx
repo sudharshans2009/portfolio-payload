@@ -13,14 +13,14 @@ const termsCache = cache(
     const payload = await getPayload({ config });
     const terms = await payload.find({
       collection: "page",
-      sort: "createdAt"
+      sort: "createdAt",
     });
     return terms.docs;
   },
   ["pages"],
   {
     revalidate: 60 * 60 * 24,
-  }
+  },
 );
 
 export default async function Footer() {

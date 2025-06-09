@@ -34,6 +34,7 @@ import { PaginatedDocs } from "payload";
 import { Message } from "@/payload-types";
 import { stringify } from "qs-esm";
 import { EmailAddress } from "@clerk/nextjs/server";
+import { buttonVariants } from "@/components/ui/button";
 
 interface Props {
   children?: React.ReactNode;
@@ -72,8 +73,11 @@ export function CopyButton({
       whileTap={{ scale: 0.95 }}
       onClick={handleCopy}
       className={cn(
-        "group relative h-14 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25",
-        className
+        buttonVariants({
+          variant: "primary",
+          size: "base",
+        }),
+        className,
       )}
       {...props}
     >
@@ -149,7 +153,7 @@ export function ContactForm({
 
       mutate(values);
     },
-    [mutate, email]
+    [mutate, email],
   );
 
   return (
@@ -246,7 +250,7 @@ export function ContactForm({
           onClick={form.handleSubmit(onSubmit)}
           disabled={isPending}
           className={cn(
-            "group h-14 relative px-8 py-4 bg-gradient-to-r flex items-center justify-center from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25"
+            "group h-14 relative px-8 py-4 bg-gradient-to-r flex items-center justify-center from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-purple-500/25",
           )}
         >
           {!isPending ? "Submit" : <Loader className="animate-spin" />}
@@ -280,7 +284,7 @@ export function InitialMessages({
   });
 
   const messages = query.data?.docs.filter(
-    (message) => message.type === "initial"
+    (message) => message.type === "initial",
   );
 
   return (
@@ -353,7 +357,7 @@ export function ReplyMessages({
   });
 
   const messages = query.data?.docs.filter(
-    (message) => message.type === "reply"
+    (message) => message.type === "reply",
   );
 
   return (

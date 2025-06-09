@@ -14,11 +14,9 @@ export default function Comments({
   issueTerm = "pathname",
   label = "Blog Comment",
 }: CommentsProps) {
-  const { theme } = useHydrate<UseThemeProps>(
-    useTheme,
-    ["dark"],
-    ({ fn }) => [fn]
-  );
+  const { theme } = useHydrate<UseThemeProps>(useTheme, ["dark"], ({ fn }) => [
+    fn,
+  ]);
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
@@ -29,8 +27,12 @@ export default function Comments({
     script.setAttribute(
       "theme",
       `github-${
-        theme === "system" ? "preferred-color-scheme" : theme === "dark" ? "dark" : "light"
-      }`
+        theme === "system"
+          ? "preferred-color-scheme"
+          : theme === "dark"
+            ? "dark"
+            : "light"
+      }`,
     );
     script.setAttribute("crossorigin", "anonymous");
 
