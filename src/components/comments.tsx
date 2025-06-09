@@ -19,7 +19,7 @@ export default function Comments({
   ]);
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "/scripts/utterances.js";
+    script.src = "https://utteranc.es/client.js";
     script.async = true;
     script.setAttribute("repo", repo);
     script.setAttribute("issue-term", issueTerm);
